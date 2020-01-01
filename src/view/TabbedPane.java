@@ -17,26 +17,34 @@ public class TabbedPane extends JTabbedPane {
 		
 		JScrollPane panelStudenti = new JScrollPane();
 		JScrollPane panelProfesori = new JScrollPane();
-		JScrollPane panelPredmeti = new JScrollPane();
+		JScrollPane panelPredmeti = new JScrollPane(new PredmetiJTable());
 		
 		this.add("Studenti", panelStudenti);
 		this.add("Profesori", panelProfesori);
 		this.add("Predmeti", panelPredmeti);
 
+		prikaziDodatneBtn(tabPredmeti);
 		
 		this.addChangeListener(new ChangeListener() {
 		
 			@Override
 			public void stateChanged(ChangeEvent e) {
-                indexTaba = getSelectedIndex();	
+				indexTaba = getSelectedIndex();	
                 if(indexTaba == 2) {
                 	tabPredmeti = true;
-                } else {
+                	prikaziDodatneBtn(tabPredmeti);
+                } else {    
                 	tabPredmeti = false;
+                	prikaziDodatneBtn(tabPredmeti);  
                 }
 			}
 		});
 	}
 	
-	
+	public void prikaziDodatneBtn(Boolean tabPredmeti) {
+		Toolbar.dodajStudentaNaPredmet.setVisible(tabPredmeti);
+		Toolbar.dodajProfesoraNaPredmet.setVisible(tabPredmeti);
+		Toolbar.obrisiProfesoraSaPredmeta.setVisible(tabPredmeti);
+		
+	}
 }

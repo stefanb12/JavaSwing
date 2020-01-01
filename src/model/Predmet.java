@@ -10,6 +10,16 @@ public class Predmet {
 	private Profesor predmetniProfesor;
 	private List<Student> spisakStudenata;
 	
+	public Predmet(String sifraPredmeta, String nazivPredmeta, int semestar, int godinaStudija,
+			Profesor predmetniProfesor, List<Student> spisakStudenata) {
+		super();
+		this.sifraPredmeta = sifraPredmeta;
+		this.nazivPredmeta = nazivPredmeta;
+		this.semestar = semestar;
+		this.godinaStudija = godinaStudija;
+		this.predmetniProfesor = predmetniProfesor;
+		this.spisakStudenata = spisakStudenata;
+	}
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}
@@ -46,6 +56,5 @@ public class Predmet {
 	public void setSpisakStudenata(List<Student> spisakStudenata) {
 		this.spisakStudenata = spisakStudenata;
 	}
-	
-		
+			
 }

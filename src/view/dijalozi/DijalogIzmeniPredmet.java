@@ -15,10 +15,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import contoller.PredmetiController;
+import model.BazaPredmeta;
+import model.Predmet;
+import view.PredmetiJTable;
+
 public class DijalogIzmeniPredmet extends JDialog {
 
 	private static final long serialVersionUID = 4491351813736153090L;
 
+	private Predmet predmet = BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex);
+	
 	public DijalogIzmeniPredmet(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
@@ -38,22 +45,21 @@ public class DijalogIzmeniPredmet extends JDialog {
 		
 		
 		GridBagConstraints gbcSifraTekst = new GridBagConstraints();
-		TextField sifraTekst = new TextField();
+		final TextField sifraTekst = new TextField();
 		gbcSifraTekst.gridx = 1;
 		gbcSifraTekst.gridy = 0;
 		gbcSifraTekst.weightx = 100;
 		gbcSifraTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcSifraTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(sifraTekst, gbcSifraTekst);
-		
-		sifraTekst.addActionListener(new ActionListener() {
+		sifraTekst.setText(predmet.getSifraPredmeta());
+		/*sifraTekst.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				System.out.println(e.getActionCommand());
+				//predmet.setSifraPredmeta(sifraTekst.getText());
 			}
-		});	
+		});	*/
 		
 		GridBagConstraints gbcNaziv = new GridBagConstraints();
 		JLabel naziv = new JLabel("Naziv predmeta*");
@@ -63,14 +69,23 @@ public class DijalogIzmeniPredmet extends JDialog {
 		panel.add(naziv, gbcNaziv);
 		
 		GridBagConstraints gbcNazivTekst = new GridBagConstraints();
-		TextField nazivTekst = new TextField();
+		final TextField nazivTekst = new TextField();
 		gbcNazivTekst.gridx = 1;
 		gbcNazivTekst.gridy = 1;
 		gbcNazivTekst.weightx = 100;
 		gbcNazivTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcNazivTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(nazivTekst, gbcNazivTekst);
+		nazivTekst.setText(predmet.getNazivPredmeta());	
+		/*nazivTekst.addActionListener(new ActionListener() {
 			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				predmet.setNazivPredmeta(nazivTekst.getText());
+				System.out.println(nazivTekst.getText());
+			}
+		});	*/
+		
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		JLabel semestar = new JLabel("Semestar*");
 		gbcSemestar.gridx = 0;
@@ -80,7 +95,8 @@ public class DijalogIzmeniPredmet extends JDialog {
 		
 		String[] semestarTekst = {"I (prvi)", "II (drugi)", "III (treci)", "IV (cetvrti)", 
 				"V (peti)", "VI (sesti)", "VII (sedmi)", "VIII (osmi)"};
-		JComboBox<String> semestarComboBox = new JComboBox<String>(semestarTekst);		
+		final JComboBox<String> semestarComboBox = new JComboBox<String>(semestarTekst);		
+		semestarComboBox.setSelectedIndex(predmet.getSemestar() - 1);
 		
 		GridBagConstraints gbcSemestarBox = new GridBagConstraints();
 		gbcSemestarBox.gridx = 1;
@@ -97,7 +113,8 @@ public class DijalogIzmeniPredmet extends JDialog {
 		panel.add(godina, gbcGodina);
 		
 		String[] godinaTekst = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
-		JComboBox<String> godinaComboBox = new JComboBox<String>(godinaTekst);
+		final JComboBox<String> godinaComboBox = new JComboBox<String>(godinaTekst);
+		godinaComboBox.setSelectedIndex(predmet.getGodinaStudija() - 1);
 		
 		GridBagConstraints gbcGodinaBox = new GridBagConstraints();
 		gbcGodinaBox.gridx = 1;
@@ -117,8 +134,14 @@ public class DijalogIzmeniPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
+				predmet.setSifraPredmeta(sifraTekst.getText());
+				predmet.setNazivPredmeta(nazivTekst.getText());
+				predmet.setSemestar(semestarComboBox.getSelectedIndex() + 1);
+				predmet.setGodinaStudija(godinaComboBox.getSelectedIndex() + 1);
+				predmet.setPredmetniProfesor(null);
+				predmet.setSpisakStudenata(null);
+				PredmetiController.getInstance().izmeniPredmet(predmet);
+				dispose();	
 			}
 		});
 		
@@ -126,8 +149,7 @@ public class DijalogIzmeniPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
+				dispose();				
 			}
 		});
 	}

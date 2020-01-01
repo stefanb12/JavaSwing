@@ -110,6 +110,15 @@ public class Profesor {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static java.util.Date parseDate(String date) {
+		try {
+			return new SimpleDateFormat("dd.MM.yyyy").parse(date);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 		
 	}
 }

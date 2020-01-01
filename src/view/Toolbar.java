@@ -7,19 +7,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import contoller.DijaloziController;
+import model.BazaPredmeta;
 
 public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = -6204353317907193077L;
 
-	public Toolbar(final JFrame parent) {
+	public static JButton dodajStudentaNaPredmet;
+	public static JButton dodajProfesoraNaPredmet;
+	public static JButton obrisiProfesoraSaPredmeta;	
+		
+	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 		setFloatable(false);
 		
@@ -35,7 +40,7 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				DijaloziController.getInstance().dijaloziDodavanje(parent);	
+				DijaloziController.getInstance().dijaloziDodavanje();	
 			}
 		});
 		
@@ -48,7 +53,7 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {			
-				DijaloziController.getInstance().dijaloziIzmena(parent);		
+				DijaloziController.getInstance().dijaloziIzmena();		
 			}
 		});
 		
@@ -60,11 +65,11 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DijaloziController.getInstance().dijaloziBrisanje(parent);	
+				DijaloziController.getInstance().dijaloziBrisanje();	
 			}
 		});
 		
-		JButton dodajStudentaNaPredmet = new JButton();
+		dodajStudentaNaPredmet = new JButton();
 		dodajStudentaNaPredmet.setToolTipText("Dodaj studenta");
 		dodajStudentaNaPredmet.setIcon(new ImageIcon("slike/dodajStudenta.png"));
 		leviPanel.add(dodajStudentaNaPredmet);
@@ -72,11 +77,11 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DijaloziController.getInstance().dijalogDodavanjeStudentaNaPredmet(parent);	
+				DijaloziController.getInstance().dijalogDodavanjeStudentaNaPredmet();	
 			}
 		});
 			
-		JButton dodajProfesoraNaPredmet = new JButton();
+		dodajProfesoraNaPredmet = new JButton();
 		dodajProfesoraNaPredmet.setToolTipText("Dodaj profesora");
 		dodajProfesoraNaPredmet.setIcon(new ImageIcon("slike/dodajProfesora.png"));
 		leviPanel.add(dodajProfesoraNaPredmet);
@@ -84,13 +89,34 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DijaloziController.getInstance().dijalogDodavanjeProfesoraNaPredmet(parent);
+				DijaloziController.getInstance().dijalogDodavanjeProfesoraNaPredmet();
 			}
 		});
 		
-		// Potrebno izmeniti
-		dodajStudentaNaPredmet.setVisible(true);
-		dodajProfesoraNaPredmet.setVisible(true);
+		obrisiProfesoraSaPredmeta = new JButton();
+		obrisiProfesoraSaPredmeta.setToolTipText("Obrisi profesora");
+		obrisiProfesoraSaPredmeta.setIcon(new ImageIcon("slike/obrisiProfesora.png"));
+		leviPanel.add(obrisiProfesoraSaPredmeta);
+		obrisiProfesoraSaPredmeta.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(PredmetiJTable.rowSelectedIndex == -1) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet sa kog zelite da obrisete profesora.");
+				} else {
+					int answer = JOptionPane
+							.showConfirmDialog(MainFrame.getInstance(),
+									"Da li ste sigurni da zelite da obrisete profesora?",
+									"Predmet - brisanje profesora", JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
+					if(answer == JOptionPane.YES_OPTION) {
+						// Brisanje profesora sa predmeta
+						BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex).setPredmetniProfesor(null);
+						PredmetiJTable.azurirajPrikaz();
+					}
+				}
+			}
+		});
 		
 		JPanel desniPanel = new JPanel();	// desni panel za pretragu
 		desniPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));

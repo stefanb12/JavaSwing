@@ -1,23 +1,22 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-import javax.swing.JFrame;
 
 import contoller.DijaloziController;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 public class MenuBar extends JMenuBar{
 
 	private static final long serialVersionUID = -111659266189879540L;
 	
-	public MenuBar(final JFrame parent) {
+	public MenuBar() {
 		
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
@@ -34,19 +33,19 @@ public class MenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				DijaloziController.getInstance().dijaloziDodavanje(parent);	
+				DijaloziController.getInstance().dijaloziDodavanje();	
 			}
 		});
 		
 		JMenuItem zatvori = new JMenuItem("Close");
-		zatvori.setIcon(new ImageIcon("slike/zatvori2.png"));
+		zatvori.setIcon(new ImageIcon("slike/zatvori.png"));
 		zatvori.setMnemonic(KeyEvent.VK_C);
 		zatvori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		zatvori.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				parent.dispose();	
+				MainFrame.getInstance().dispose();	          
 			}
 		});
 		
@@ -58,7 +57,7 @@ public class MenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				DijaloziController.getInstance().dijaloziIzmena(parent);	
+				DijaloziController.getInstance().dijaloziIzmena();	
 			}
 		});
 		
@@ -71,7 +70,7 @@ public class MenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				DijaloziController.getInstance().dijaloziBrisanje(parent);	
+				DijaloziController.getInstance().dijaloziBrisanje();	
 			}
 		});
 	

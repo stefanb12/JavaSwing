@@ -57,7 +57,8 @@ public class DijalogDodajProfesoraNaPredmet extends JDialog {
 		potvrda.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
+				// Dodavanje profesora na predmet...
 				dispose();
 				
 			}
