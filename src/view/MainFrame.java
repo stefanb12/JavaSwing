@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import view.MenuBar;
+
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1956297561304331839L;
@@ -26,8 +28,8 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//MenuBar menu = new MenuBar();
-		//this.setJMenuBar(menu);
+		MenuBar menu = new MenuBar(this);
+		this.setJMenuBar(menu);
 		
 		Toolbar toolbar = new Toolbar(this);
 		this.add(toolbar, BorderLayout.NORTH);

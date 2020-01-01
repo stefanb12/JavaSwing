@@ -5,11 +5,14 @@ import javax.swing.JFrame;
 import view.dijalozi.DijalogDodajPredmet;
 import view.dijalozi.DijalogDodajProfesora;
 import view.dijalozi.DijalogDodajProfesoraNaPredmet;
+import view.dijalozi.DijalogDodajStudenta;
 import view.dijalozi.DijalogDodajStudentaNaPredmet;
 import view.dijalozi.DijalogIzmeniPredmet;
 import view.dijalozi.DijalogIzmeniProfesora;
+import view.dijalozi.DijalogIzmeniStudenta;
 import view.dijalozi.DijalogObrisiPredmet;
 import view.dijalozi.DijalogObrisiProfesora;
+import view.dijalozi.DijalogObrisiStudenta;
 
 public class DijaloziController {
 
@@ -25,7 +28,10 @@ public class DijaloziController {
 	public DijaloziController(final JFrame parent) {}
 	
 	public void dijaloziDodavanje(final JFrame parent) {
-		if(view.TabbedPane.indexTaba == 1) {
+		if(view.TabbedPane.indexTaba == 0){
+			DijalogDodajStudenta dialogStudent = new DijalogDodajStudenta(parent, "Dodavanje studenta", true);
+			dialogStudent.setVisible(true);
+		}else if(view.TabbedPane.indexTaba == 1) {
 			DijalogDodajProfesora dijalog = new DijalogDodajProfesora(parent, "Dodavanje profesora", true);
 			dijalog.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 2) {
@@ -35,7 +41,10 @@ public class DijaloziController {
 	}
 	
 	public void dijaloziIzmena(final JFrame parent) {
-		if(view.TabbedPane.indexTaba == 1) {
+		if(view.TabbedPane.indexTaba == 0){
+			DijalogIzmeniStudenta dialogStudent = new DijalogIzmeniStudenta(parent, "Izmena studenta", true);
+			dialogStudent.setVisible(true);
+		}else if(view.TabbedPane.indexTaba == 1) {
 			DijalogIzmeniProfesora dialog = new DijalogIzmeniProfesora(parent, "Izmena profesora", true);
 			dialog.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 2) {
@@ -45,7 +54,10 @@ public class DijaloziController {
 	}
 	
 	public void dijaloziBrisanje(final JFrame parent) {
-		if(view.TabbedPane.indexTaba == 1) {
+		if(view.TabbedPane.indexTaba == 0){
+			DijalogObrisiStudenta dialogStudent = new DijalogObrisiStudenta(parent, "Brisanje studenta", true);
+			dialogStudent.setVisible(true);
+		}else if(view.TabbedPane.indexTaba == 1) {
 			DijalogObrisiProfesora dijalog = new DijalogObrisiProfesora(parent, "Brisanje profesora", true);
 			dijalog.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 2) {
