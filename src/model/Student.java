@@ -1,24 +1,28 @@
 package model;
 
-enum Stanje { B, S };
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+//enum Stanje { B, S };
 
 public class Student {
 	
 	private String ime;
 	private String prezime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String brojIndeksa;
-	private String datumUpisa;
+	private Date datumUpisa;
 	private int trenutnaGodinaStudija;
 	private double prosecnaOcena;
 	private Stanje stanje;
 	
-	public Student(String brojIndeksa, String ime, String prezime, String datumRodjenja,
+	public Student(String brojIndeksa, String ime, String prezime, Date datumRodjenja,
 			String adresaStanovanja, String kontaktTelefon, String emailAdresa, 
-			String datumUpisa, int trenutnaGodinaStudija,
+			Date datumUpisa, int trenutnaGodinaStudija,
 			double prosecnaOcena, Stanje stanje) {
 		super();
 		this.ime = ime;
@@ -46,10 +50,10 @@ public class Student {
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 	public String getAdresaStanovanja() {
@@ -76,10 +80,10 @@ public class Student {
 	public void setBrojIndeksa(String brojIndeksa) {
 		this.brojIndeksa = brojIndeksa;
 	}
-	public String getDatumUpisa() {
+	public Date getDatumUpisa() {
 		return datumUpisa;
 	}
-	public void setDatumUpisa(String datumUpisa) {
+	public void setDatumUpisa(Date datumUpisa) {
 		this.datumUpisa = datumUpisa;
 	}
 	public int getTrenutnaGodinaStudija() {
@@ -99,6 +103,25 @@ public class Student {
 	}
 	public void setStanje(Stanje stanje) {
 		this.stanje = stanje;
+	}
+	
+	public static String parseDateToString(Date date) {
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+			return dateFormat.format(date);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static java.util.Date parseDate(String date) {
+		try {
+			return new SimpleDateFormat("dd.MM.yyyy").parse(date);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}	
 	}
 
 }

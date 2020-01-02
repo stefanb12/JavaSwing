@@ -17,14 +17,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import contoller.StudentiController;
+
+import view.StudentiJTable;
+
+import model.Stanje;
+import model.Student;
+import model.BazaStudenata;
+
+
 public class DijalogIzmeniStudenta extends JDialog{
 
 	private static final long serialVersionUID = 4102385948297627239L;
+	
+	private Student student = BazaStudenata.getInstance().getRow(StudentiJTable.rowSelectedIndex);
 
 	public DijalogIzmeniStudenta(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
-		setSize(400,530);
+		setSize(500,630);
 		setLocationRelativeTo(parent);
 		
 		JPanel panel = new JPanel();
@@ -36,27 +47,17 @@ public class DijalogIzmeniStudenta extends JDialog{
 		gbcIme.gridx = 0;
 		gbcIme.gridy = 0;
 		gbcIme.insets = new Insets(20, 0, 0, 0);
-		panel.add(ime, gbcIme);
-		
+		panel.add(ime, gbcIme);		
 		
 		GridBagConstraints gbcImeTekst = new GridBagConstraints();
-		TextField imeTekst = new TextField();
+		final TextField imeTekst = new TextField();
 		gbcImeTekst.gridx = 1;
 		gbcImeTekst.gridy = 0;
 		gbcImeTekst.weightx = 100;
 		gbcImeTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcImeTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(imeTekst, gbcImeTekst);
-		
-		imeTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				//s.setIme(e.getActionCommand());
-				System.out.println(e.getActionCommand());
-			}
-		});	
+		imeTekst.setText(student.getIme());
 		
 		GridBagConstraints gbcPrezime = new GridBagConstraints();
 		JLabel prezime = new JLabel("Prezime*  ");
@@ -66,13 +67,14 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(prezime,gbcPrezime);
 		
 		GridBagConstraints gbcPrezimeTekst = new GridBagConstraints();
-		TextField prezimeTekst = new TextField();
+		final TextField prezimeTekst = new TextField();
 		gbcPrezimeTekst.gridx = 1;
 		gbcPrezimeTekst.gridy = 1;
 		gbcPrezimeTekst.weightx = 100;
 		gbcPrezimeTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcPrezimeTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(prezimeTekst, gbcPrezimeTekst);
+		prezimeTekst.setText(student.getPrezime());
 		
 		GridBagConstraints gbcDatum = new GridBagConstraints();
 		JLabel datum = new JLabel("Datum rodjenja*  ");
@@ -82,13 +84,14 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(datum, gbcDatum);
 		
 		GridBagConstraints gbcDatumTekst = new GridBagConstraints();
-		TextField datumTekst = new TextField();
+		final TextField datumTekst = new TextField();
 		gbcDatumTekst.gridx = 1;
 		gbcDatumTekst.gridy = 2;
 		gbcDatumTekst.weightx = 100;
 		gbcDatumTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcDatumTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(datumTekst, gbcDatumTekst);
+		datumTekst.setText(Student.parseDateToString(student.getDatumRodjenja()));
 		
 		
 		GridBagConstraints gbcAdresaS = new GridBagConstraints();
@@ -99,13 +102,14 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(adresaS, gbcAdresaS);
 		
 		GridBagConstraints gbcAdresaSTekst = new GridBagConstraints();
-		TextField adresaSTekst = new TextField();
+		final TextField adresaSTekst = new TextField();
 		gbcAdresaSTekst.gridx = 1;
 		gbcAdresaSTekst.gridy = 3;
 		gbcAdresaSTekst.weightx = 100;
 		gbcAdresaSTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcAdresaSTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(adresaSTekst, gbcAdresaSTekst);
+		adresaSTekst.setText(student.getAdresaStanovanja());
 		
 		GridBagConstraints gbcTelefon = new GridBagConstraints();
 		JLabel telefon = new JLabel("Broj telefona*  ");
@@ -115,13 +119,14 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(telefon, gbcTelefon);	
 		
 		GridBagConstraints gbcTelefonTekst = new GridBagConstraints();
-		TextField telefonTekst = new TextField();
+		final TextField telefonTekst = new TextField();
 		gbcTelefonTekst.gridx = 1;
 		gbcTelefonTekst.gridy = 4;
 		gbcTelefonTekst.weightx = 100;
 		gbcTelefonTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcTelefonTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(telefonTekst, gbcTelefonTekst);
+		telefonTekst.setText(student.getKontaktTelefon());
 		
 		GridBagConstraints gbcBrojIndeksa = new GridBagConstraints();
 		JLabel indeks = new JLabel("Broj indeksa*  ");
@@ -131,51 +136,113 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(indeks, gbcBrojIndeksa);
 		
 		GridBagConstraints gbcBrojIndeksaTekst = new GridBagConstraints();
-		TextField indeksTekst = new TextField();
+		final TextField indeksTekst = new TextField();
 		gbcBrojIndeksaTekst.gridx = 1;
 		gbcBrojIndeksaTekst.gridy = 5;
 		gbcBrojIndeksaTekst.weightx = 100;
 		gbcBrojIndeksaTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcBrojIndeksaTekst.insets = new Insets(20, 0, 0, 20);
 		panel.add(indeksTekst, gbcBrojIndeksaTekst);
+		indeksTekst.setText(student.getBrojIndeksa());
+		
+		GridBagConstraints gbcEmailAdresa = new GridBagConstraints();
+		JLabel email = new JLabel("Email*  ");
+		gbcEmailAdresa.gridx = 0;
+		gbcEmailAdresa.gridy = 6;
+		gbcEmailAdresa.insets = new Insets(20, 0, 0, 20);
+		panel.add(email, gbcEmailAdresa);
+		
+		GridBagConstraints gbcEmailAdresaTekst = new GridBagConstraints();
+		final TextField emailTekst = new TextField();
+		gbcEmailAdresaTekst.gridx = 1;
+		gbcEmailAdresaTekst.gridy = 6;
+		gbcEmailAdresaTekst.weightx = 100;
+		gbcEmailAdresaTekst.fill = GridBagConstraints.HORIZONTAL;
+		gbcEmailAdresaTekst.insets = new Insets(20, 0, 0, 20);
+		panel.add(emailTekst, gbcEmailAdresaTekst);
+		emailTekst.setText(student.getEmailAdresa());
+		
+		GridBagConstraints gbcUpisDatum = new GridBagConstraints();
+		JLabel upisDatum = new JLabel("Datum upisa*  ");
+		gbcUpisDatum.gridx = 0;
+		gbcUpisDatum.gridy = 7;
+		gbcUpisDatum.insets = new Insets(20, 0, 0, 20);
+		panel.add(upisDatum, gbcUpisDatum);
+		
+		GridBagConstraints gbcUpisDatumTekst = new GridBagConstraints();
+		final TextField upisTekst = new TextField();
+		gbcUpisDatumTekst.gridx = 1;
+		gbcUpisDatumTekst.gridy = 7;
+		gbcUpisDatumTekst.weightx = 100;
+		gbcUpisDatumTekst.fill = GridBagConstraints.HORIZONTAL;
+		gbcUpisDatumTekst.insets = new Insets(20, 0, 0, 20);
+		panel.add(upisTekst, gbcUpisDatumTekst);
+		upisTekst.setText(Student.parseDateToString(student.getDatumUpisa()));
+		
+		GridBagConstraints gbcProsek = new GridBagConstraints();
+		JLabel prosek = new JLabel("Prosecna ocena*  ");
+		gbcProsek.gridx = 0;
+		gbcProsek.gridy = 8;
+		gbcProsek.insets = new Insets(20, 0, 0, 20);
+		panel.add(prosek, gbcProsek);
+		
+		GridBagConstraints gbcProsekTekst = new GridBagConstraints();
+		final TextField prosekTekst = new TextField();
+		gbcProsekTekst.gridx = 1;
+		gbcProsekTekst.gridy = 8;
+		gbcProsekTekst.weightx = 100;
+		gbcProsekTekst.fill = GridBagConstraints.HORIZONTAL;
+		gbcProsekTekst.insets = new Insets(20, 0, 0, 20);
+		panel.add(prosekTekst, gbcProsekTekst);
+		prosekTekst.setText(String.valueOf(student.getProsecnaOcena()));
 		
 		GridBagConstraints gbcTrenutnaGodStud = new GridBagConstraints();
 		JLabel godStud  = new JLabel("Trenutna godina studija*  ");
 		gbcTrenutnaGodStud.gridx = 0;
-		gbcTrenutnaGodStud.gridy = 6;
+		gbcTrenutnaGodStud.gridy = 9;
 		gbcTrenutnaGodStud.insets = new Insets(20, 0, 0, 20);
 		panel.add(godStud, gbcTrenutnaGodStud);
 		
 		GridBagConstraints gbcTrenutnaGodStuds = new GridBagConstraints();
 		String[] trenutnaGod = new String[] {"I (prva)", "II (druga)","III (treca)", "IV (cetvrta)"};
-		JComboBox<String> trenutnaGodStud = new JComboBox<>(trenutnaGod);
+		final JComboBox<String> trenutnaGodStud = new JComboBox<>(trenutnaGod);
 		gbcTrenutnaGodStuds.gridx = 1;
-		gbcTrenutnaGodStuds.gridy = 6;
+		gbcTrenutnaGodStuds.gridy = 9;
 		gbcTrenutnaGodStuds.weightx = 100;
 		gbcTrenutnaGodStuds.fill = GridBagConstraints.HORIZONTAL;
 		gbcTrenutnaGodStuds.insets = new Insets(20, 0, 0, 20);
 		panel.add(trenutnaGodStud, gbcTrenutnaGodStuds);
+		trenutnaGodStud.setSelectedIndex(student.getTrenutnaGodinaStudija() - 1);
 		
 		GridBagConstraints gbcStanjeB = new GridBagConstraints();
-		JRadioButton stanjeB = new JRadioButton("Budžet");
+		final JRadioButton stanjeB = new JRadioButton("Budžet");
 		gbcStanjeB.gridx = 0;
-		gbcStanjeB.gridy = 7;
+		gbcStanjeB.gridy = 10;
 		gbcStanjeB.fill = GridBagConstraints.HORIZONTAL;
 		gbcStanjeB.insets = new Insets(20, 0, 0, 20);
 		
-		GridBagConstraints gbcStanjeS = new GridBagConstraints();
+		final GridBagConstraints gbcStanjeS = new GridBagConstraints();
 		JRadioButton stanjeS = new JRadioButton("Samofinansiranje");
 		gbcStanjeS.gridx = 0;
-		gbcStanjeS.gridy = 8;
+		gbcStanjeS.gridy = 11;
 		gbcStanjeS.fill = GridBagConstraints.HORIZONTAL;
 		gbcStanjeS.insets = new Insets(1, 0, 0, 20);
 		
-		ButtonGroup grupaD = new ButtonGroup();
+		final ButtonGroup grupaD = new ButtonGroup();
 		grupaD.add(stanjeB);
 		grupaD.add(stanjeS);
 		
+		stanjeB.setActionCommand(String.valueOf(Stanje.B));
+		stanjeS.setActionCommand(String.valueOf(Stanje.S));
+		
 		panel.add(stanjeB, gbcStanjeB);
 		panel.add(stanjeS, gbcStanjeS);
+		
+		if(student.getStanje() == Stanje.S){
+			stanjeS.setSelected(true);
+		}else{
+			stanjeB.setSelected(true);
+		}
 		
 		JPanel panelBottom = new JPanel();
 		JButton potvrda = new JButton("Potvrda");
@@ -188,8 +255,19 @@ public class DijalogIzmeniStudenta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				student.setBrojIndeksa(indeksTekst.getText());
+				student.setIme(imeTekst.getText());
+				student.setPrezime(prezimeTekst.getText());
+				student.setDatumRodjenja(Student.parseDate((datumTekst.getText())));
+				student.setAdresaStanovanja(adresaSTekst.getText());
+				student.setKontaktTelefon(telefonTekst.getText());
+				student.setEmailAdresa(emailTekst.getText());
+				student.setDatumUpisa(Student.parseDate(upisTekst.getText()));
+				student.setTrenutnaGodinaStudija(trenutnaGodStud.getSelectedIndex() + 1);
+				student.setProsecnaOcena(Double.parseDouble(prosekTekst.getText()));
+				student.setStanje(Stanje.valueOf(grupaD.getSelection().getActionCommand()));
+				StudentiController.getInstance().izmeniStudenta(student);
 				dispose();
-				//JOptionPane.showMessageDialog(null, "Dodali ste studenta.");
 				
 			}
 		});

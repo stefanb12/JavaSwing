@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import contoller.StudentiController;
+
 public class DijalogObrisiStudenta extends JDialog{
 
 	private static final long serialVersionUID = 3494829882913925398L;
@@ -36,7 +38,8 @@ public class DijalogObrisiStudenta extends JDialog{
 		potvrda.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
+				StudentiController.getInstance().izbrisiStudenta();
 				dispose();
 				JOptionPane.showMessageDialog(null, "Student obrisan.");
 				
