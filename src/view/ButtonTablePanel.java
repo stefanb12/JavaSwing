@@ -7,14 +7,14 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-public class PredmetiTablePanel extends JPanel {
-	// Panel za prikazivanje dugmeta za kolonu studenti u tabu predmeti
-	private static final long serialVersionUID = -3777718742688152316L;
+public class ButtonTablePanel extends JPanel {
 
+	private static final long serialVersionUID = 7210699870063081670L;
+	
 	private JPanel leftPanel = new JPanel();
 	private JPanel rightPanel = new JPanel();
 	
-	public PredmetiTablePanel() {
+	public ButtonTablePanel() {
 		setLayout(new BorderLayout());
 		add(leftPanel, BorderLayout.WEST);
 		leftPanel.setBackground(Color.LIGHT_GRAY);
@@ -22,7 +22,7 @@ public class PredmetiTablePanel extends JPanel {
 		rightPanel.setBackground(Color.LIGHT_GRAY);
 	}
 	
-	public PredmetiTablePanel(Component c, int leftGap, int rightGap) {
+	public ButtonTablePanel(Component c, int leftGap, int rightGap) {
 		this();
 		leftPanel.setPreferredSize(new Dimension(leftGap, leftGap));
 		rightPanel.setPreferredSize(new Dimension(leftGap, leftGap));

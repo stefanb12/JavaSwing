@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 import view.MainFrame;
 import view.PredmetiJTable;
+import view.ProfesoriJTable;
 import view.dijalozi.DijalogDodajPredmet;
 import view.dijalozi.DijalogDodajProfesora;
 import view.dijalozi.DijalogDodajProfesoraNaPredmet;
@@ -63,28 +64,33 @@ public class DijaloziController {
 			DijalogObrisiStudenta dialogStudent = new DijalogObrisiStudenta(MainFrame.getInstance(), "Brisanje studenta", true);
 			dialogStudent.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 1) {
+			if(ProfesoriJTable.rowSelectedIndex == -1) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite profesora kojeg zelite da obrisete.");
+			} else {
 				int answer = JOptionPane
-					.showConfirmDialog(MainFrame.getInstance(),
-							"Da li ste sigurni da zelite da obrisete profesora?",
-							"Brisanje profesora", JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
+						.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da zelite da obrisete profesora?",
+								"Brisanje profesora", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
 				if(answer == JOptionPane.YES_OPTION) {
 					// Brisanje profesora
+					ProfesoriContoller.getInstance().izbrisiProfesora();
 				}
+			}
 		} else if(view.TabbedPane.indexTaba == 2) {
 			if(PredmetiJTable.rowSelectedIndex == -1) {
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji zelite da obrisete.");
-		} else {
-			int answer = JOptionPane
-				.showConfirmDialog(MainFrame.getInstance(),
-						"Da li ste sigurni da zelite da obrisete predmet?",
-						"Brisanje predmeta", JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
-			if(answer == JOptionPane.YES_OPTION) {
-				// Brisanje predmeta
-				PredmetiController.getInstance().izbrisiPredmet();
+			} else {
+				int answer = JOptionPane
+						.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da zelite da obrisete predmet?",
+								"Brisanje predmeta", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
+				if(answer == JOptionPane.YES_OPTION) {
+					// Brisanje predmeta
+					PredmetiController.getInstance().izbrisiPredmet();
+				}
 			}
-		}
 		}
 	}
 	

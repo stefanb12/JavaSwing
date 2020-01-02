@@ -13,17 +13,17 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class ButtonColumnPStudenti extends AbstractCellEditor
+public class ButtonColumnPPredmeti extends AbstractCellEditor
 implements TableCellRenderer, TableCellEditor, MouseListener {
 
-	private static final long serialVersionUID = -6607502102629194402L;
+private static final long serialVersionUID = -6607502102629194402L;
 	
 	private JButton renderButton;
 	private JButton editorButton;
 	private JTable table;
 	private boolean isEditorActive = false;
 
-	public ButtonColumnPStudenti(JTable table, int column) {
+	public ButtonColumnPPredmeti(JTable table, int column) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
@@ -37,7 +37,7 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				JOptionPane.showMessageDialog(null, "Poruka");
+				JOptionPane.showMessageDialog(null, "Prikazi predmete");
 			}
 		});
 

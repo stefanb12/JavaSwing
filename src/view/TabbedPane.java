@@ -16,7 +16,7 @@ public class TabbedPane extends JTabbedPane {
 	public TabbedPane() {
 		
 		JScrollPane panelStudenti = new JScrollPane();
-		JScrollPane panelProfesori = new JScrollPane();
+		JScrollPane panelProfesori = new JScrollPane(new ProfesoriJTable());
 		JScrollPane panelPredmeti = new JScrollPane(new PredmetiJTable());
 		
 		this.add("Studenti", panelStudenti);
