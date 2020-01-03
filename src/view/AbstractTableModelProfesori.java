@@ -33,7 +33,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		if (column < 10) {
 			return BazaProfesora.getInstance().getValueAt(row, column);
 		} else {
-			JButton btn = new JButton("Profesori");
+			JButton btn = new JButton("Predmeti");
 			return btn;
 		}
 	}
@@ -41,7 +41,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 	@Override
 	public String getColumnName(int column) {
 		if (column == 10) {
-			return  "Profesori";
+			return  "Predmeti";
 		}
 		return BazaProfesora.getInstance().getColumnName(column);
 	}

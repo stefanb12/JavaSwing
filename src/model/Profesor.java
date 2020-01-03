@@ -1,11 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Profesor {
+public class Profesor implements Serializable {
+
+	private static final long serialVersionUID = 4866302167021687976L;
+	
 	private String ime;
 	private String prezime;
 	private Date datumRodjenja;
@@ -120,5 +124,13 @@ public class Profesor {
 			return null;
 		}
 		
+	}
+
+	@Override
+	public String toString() {
+		return "Profesor [ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", emailAdresa="
+				+ emailAdresa + ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte
+				+ ", titula=" + titula + ", zvanje=" + zvanje + ", spisakPredmeta=" + spisakPredmeta + "]";
 	}
 }

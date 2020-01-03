@@ -3,15 +3,16 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-import view.MenuBar;
+import model.BazaPredmeta;
+import model.BazaProfesora;
 
 public class MainFrame extends JFrame {
 
@@ -44,7 +45,29 @@ public class MainFrame extends JFrame {
 		StatusBar statusBar = new StatusBar();
 		this.add(statusBar, BorderLayout.SOUTH);
 		
-		this.addWindowListener(new WindowAdapter() {
+		this.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				BazaProfesora.getInstance().loadProfesore("serijalizacija/Profesori.raw");
+				BazaPredmeta.getInstance().loadPredmete("serijalizacija/Predmeti.raw");
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub	
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub	
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub	
+			}
+			
 			@Override
 			public void windowClosing(WindowEvent e) {
 				int answer = JOptionPane
@@ -52,10 +75,23 @@ public class MainFrame extends JFrame {
 								"Da li ste sigurni da želite da zatvorite aplikaciju?",
 								"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/exit.png"));
-				if(answer != JOptionPane.YES_OPTION) 
-					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-				else 
-					setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);		
+				if(answer == JOptionPane.YES_OPTION) {
+					BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
+					BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
+					setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				} else { 
+					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);	
+				}
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub	
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
 			}
 		}); 	
 				

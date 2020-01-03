@@ -1,7 +1,15 @@
 package model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import view.PredmetiJTable;
 
 public class BazaPredmeta {
 
@@ -39,13 +47,11 @@ public class BazaPredmeta {
 				"Safarikova 32", "062 576 5342", "predrag@gmail ","Beograd", "1231231", "Profesor", "Doktor", null);
 		Profesor profesor4 = new Profesor("Ivana", "Mitrovic", Profesor.parseDate("21.4.1969"), 
 				"Jevrejska 10", "064 247 953", "ivana@gmail ","Beograd", "1231231", "Profesor", "Doktor", null);
-		List<Student> studenti1 = new ArrayList<Student>();
-		List<Student> studenti2 = new ArrayList<Student>();
-		predmeti.add(new Predmet("RW123", "Metode optimizacije", 4, 2, profesor1, studenti1));
-		predmeti.add(new Predmet("32DF3", "Algebra", 1, 1, profesor2, studenti1));
-		predmeti.add(new Predmet("E24RE", "Programski prevodioci", 5, 3, profesor3, studenti2));
-		predmeti.add(new Predmet("M3282", "Elektrotehnika", 2, 1, profesor4, studenti2));
-
+		List<Student> studenti = new ArrayList<Student>();
+		predmeti.add(new Predmet("RW123", "Metode optimizacije", 4, 2, profesor1, studenti));
+		predmeti.add(new Predmet("32DF3", "Algebra", 1, 1, profesor2, studenti));
+		predmeti.add(new Predmet("E24RE", "Programski prevodioci", 5, 3, profesor3, studenti));
+		predmeti.add(new Predmet("M3282", "Elektrotehnika", 2, 1, profesor4, studenti));
 	}
 
 	public List<Predmet> getPredmeti() {
@@ -111,6 +117,48 @@ public class BazaPredmeta {
 			if (predmet.getSifraPredmeta().equals(sifra)) {
 				predmeti.remove(predmet);
 				break;
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadPredmete(String file) {
+		ObjectInputStream in = null;
+		List<Predmet> predmeti = new ArrayList<Predmet>();
+		
+		try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+			predmeti = (List<Predmet>) in.readObject();
+			this.setPredmeti(predmeti);	
+			PredmetiJTable.azurirajPrikaz();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(in != null) {
+				try {
+					in.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void savePredmete(String file) {
+		ObjectOutputStream out = null;
+		
+		try {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+			out.writeObject(this.getPredmeti());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(out != null) {
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

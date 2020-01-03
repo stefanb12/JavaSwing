@@ -1,12 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //enum Stanje { B, S };
 
-public class Student {
+public class Student implements Serializable {
+	
+	private static final long serialVersionUID = -1514410461557780916L;
 	
 	private String ime;
 	private String prezime;
@@ -122,6 +125,15 @@ public class Student {
 			e.printStackTrace();
 			return null;
 		}	
+	}
+
+	@Override
+	public String toString() {
+		return "Student [ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", emailAdresa="
+				+ emailAdresa + ", brojIndeksa=" + brojIndeksa + ", datumUpisa=" + datumUpisa
+				+ ", trenutnaGodinaStudija=" + trenutnaGodinaStudija + ", prosecnaOcena=" + prosecnaOcena + ", stanje="
+				+ stanje + "]";
 	}
 
 }

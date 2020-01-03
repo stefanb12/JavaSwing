@@ -1,8 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Predmet {
+public class Predmet implements Serializable {
+	
+	private static final long serialVersionUID = 3602205603825194210L;
+	
 	private String sifraPredmeta;
 	private String nazivPredmeta;
 	private int semestar;
@@ -55,6 +59,13 @@ public class Predmet {
 	}
 	public void setSpisakStudenata(List<Student> spisakStudenata) {
 		this.spisakStudenata = spisakStudenata;
+	}
+	
+	@Override
+	public String toString() {
+		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
+				+ ", godinaStudija=" + godinaStudija + ", predmetniProfesor=" + predmetniProfesor + ", spisakStudenata="
+				+ spisakStudenata + "]";
 	}
 			
 }

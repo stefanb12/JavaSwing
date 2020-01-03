@@ -1,8 +1,16 @@
 package model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import view.ProfesoriJTable;
 
 public class BazaProfesora {
 
@@ -47,7 +55,6 @@ public class BazaProfesora {
 				"Alekse Santica 53", "063 412 4381", "jovan@gmail ","Beograd", "1231", "Profesor", "Doktor", predmeti));
 		profesori.add(new Profesor("Ivana", "Mitrovic", Profesor.parseDate("21.4.1969"), 
 				"Jevrejska 10", "064 247 953", "ivana@gmail ","Beograd", "4231", "Profesor", "Doktor", predmeti));
-
 	}
 
 	public List<Profesor> getProfesori() {
@@ -128,6 +135,48 @@ public class BazaProfesora {
 			if (profesor.getBrojLicneKarte().equals(brojLicneKarte)) {
 				profesori.remove(profesor);
 				break;
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadProfesore(String file) {
+		ObjectInputStream in = null;
+		List<Profesor> profesori = new ArrayList<Profesor>();
+		
+		try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+			profesori = (List<Profesor>) in.readObject();
+			this.setProfesori(profesori);
+			ProfesoriJTable.azurirajPrikaz();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(in != null) {
+				try {
+					in.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void saveProfesore(String file) {
+		ObjectOutputStream out = null;
+		
+		try {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+			out.writeObject(this.getProfesori());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(out != null) {
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
