@@ -77,7 +77,11 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DijaloziController.getInstance().dijalogDodavanjeStudentaNaPredmet();	
+				if(PredmetiJTable.rowSelectedIndex == -1) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite predmet na koji želite da dodate studenta");
+				} else {
+					DijaloziController.getInstance().dijalogDodavanjeStudentaNaPredmet();	
+				}
 			}
 		});
 			
@@ -89,7 +93,11 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DijaloziController.getInstance().dijalogDodavanjeProfesoraNaPredmet();
+				if(PredmetiJTable.rowSelectedIndex == -1) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite predmet na koji želite da dodate profesora");
+				} else {
+					DijaloziController.getInstance().dijalogDodavanjeProfesoraNaPredmet();
+				}
 			}
 		});
 		
@@ -102,17 +110,23 @@ public class Toolbar extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(PredmetiJTable.rowSelectedIndex == -1) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet sa kog zelite da obrisete profesora.");
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet sa kog želite da obrisete profesora.");
 				} else {
-					int answer = JOptionPane
-							.showConfirmDialog(MainFrame.getInstance(),
-									"Da li ste sigurni da zelite da obrisete profesora?",
-									"Predmet - brisanje profesora", JOptionPane.YES_NO_OPTION,
-									JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
-					if(answer == JOptionPane.YES_OPTION) {
-						// Brisanje profesora sa predmeta
-						BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex).setPredmetniProfesor(null);
-						PredmetiJTable.azurirajPrikaz();
+					if(BazaPredmeta.getInstance().getValueAt(PredmetiJTable.rowSelectedIndex, 4).equals("Nema profesora")) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(),
+									"Predmet nema profesora!",
+									"Greška" , JOptionPane.ERROR_MESSAGE);
+					} else {
+						int answer = JOptionPane
+								.showConfirmDialog(MainFrame.getInstance(),
+										"Da li ste sigurni da želite da obrisete profesora?",
+										"Predmet - brisanje profesora", JOptionPane.YES_NO_OPTION,
+										JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
+						if(answer == JOptionPane.YES_OPTION) {
+							// Brisanje profesora sa predmeta iz Baze Predmeta
+							BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex).setPredmetniProfesor(null);
+							PredmetiJTable.azurirajPrikaz();
+						}
 					}
 				}
 			}

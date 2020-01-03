@@ -13,9 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import contoller.PredmetiController;
+import view.MainFrame;
 
 public class DijalogDodajPredmet extends JDialog {
 
@@ -32,7 +34,7 @@ public class DijalogDodajPredmet extends JDialog {
 		this.add(panel, BorderLayout.CENTER);
 		
 		GridBagConstraints gbcSifra = new GridBagConstraints();
-		JLabel sifra = new JLabel("Sifra predmeta*");
+		JLabel sifra = new JLabel("Šifra predmeta*");
 		gbcSifra.gridx = 0;
 		gbcSifra.gridy = 0;
 		gbcSifra.insets = new Insets(10, 10, 0, 10);
@@ -47,14 +49,6 @@ public class DijalogDodajPredmet extends JDialog {
 		gbcSifraTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcSifraTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(sifraTekst, gbcSifraTekst);
-		/*sifraTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JTextField tekst = (JTextField) e.getSource();
-				predmet.setSifraPredmeta(tekst.getText());
-			}
-		});	*/
 		
 		GridBagConstraints gbcNaziv = new GridBagConstraints();
 		JLabel naziv = new JLabel("Naziv predmeta*");
@@ -71,14 +65,6 @@ public class DijalogDodajPredmet extends JDialog {
 		gbcNazivTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcNazivTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(nazivTekst, gbcNazivTekst);
-		/*nazivTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JTextField tekst = (JTextField) e.getSource();
-				predmet.setNazivPredmeta(tekst.getText());
-			}
-		});	*/
 			
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		JLabel semestar = new JLabel("Semestar*");
@@ -90,13 +76,6 @@ public class DijalogDodajPredmet extends JDialog {
 		String[] semestarTekst = {"I (prvi)", "II (drugi)", "III (treci)", "IV (cetvrti)", 
 				"V (peti)", "VI (sesti)", "VII (sedmi)", "VIII (osmi)"};
 		final JComboBox<String> semestarComboBox = new JComboBox<String>(semestarTekst);		
-		/*semestarComboBox.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-					
-			}
-		});	*/
 		
 		GridBagConstraints gbcSemestarBox = new GridBagConstraints();
 		gbcSemestarBox.gridx = 1;
@@ -114,13 +93,6 @@ public class DijalogDodajPredmet extends JDialog {
 		
 		String[] godinaTekst = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
 		final JComboBox<String> godinaComboBox = new JComboBox<String>(godinaTekst);
-		/*godinaComboBox.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});	*/
 		
 		GridBagConstraints gbcGodinaBox = new GridBagConstraints();
 		gbcGodinaBox.gridx = 1;
@@ -140,9 +112,15 @@ public class DijalogDodajPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PredmetiController.getInstance().dodajPredmet(sifraTekst.getText(), nazivTekst.getText(),
-						semestarComboBox.getSelectedIndex() + 1, godinaComboBox.getSelectedIndex() + 1, null, null);
-				dispose();
+				if(sifraTekst.getText().isEmpty() || nazivTekst.getText().isEmpty()) 
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				else {
+					PredmetiController.getInstance().dodajPredmet(sifraTekst.getText(), nazivTekst.getText(),
+							semestarComboBox.getSelectedIndex() + 1, godinaComboBox.getSelectedIndex() + 1, null, null);
+					dispose();
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Predmet nema profesora, dodajte ga ukoliko želite.",
+					"Upozorenje - dodaj profesora", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		

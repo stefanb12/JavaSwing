@@ -13,11 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import contoller.PredmetiController;
 import model.BazaPredmeta;
 import model.Predmet;
+import view.MainFrame;
 import view.PredmetiJTable;
 
 public class DijalogIzmeniPredmet extends JDialog {
@@ -37,7 +39,7 @@ public class DijalogIzmeniPredmet extends JDialog {
 		this.add(panel, BorderLayout.CENTER);
 		
 		GridBagConstraints gbcSifra = new GridBagConstraints();
-		JLabel sifra = new JLabel("Sifra predmeta*");
+		JLabel sifra = new JLabel("Šifra predmeta*");
 		gbcSifra.gridx = 0;
 		gbcSifra.gridy = 0;
 		gbcSifra.insets = new Insets(10, 10, 0, 10);
@@ -53,13 +55,6 @@ public class DijalogIzmeniPredmet extends JDialog {
 		gbcSifraTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(sifraTekst, gbcSifraTekst);
 		sifraTekst.setText(predmet.getSifraPredmeta());
-		/*sifraTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//predmet.setSifraPredmeta(sifraTekst.getText());
-			}
-		});	*/
 		
 		GridBagConstraints gbcNaziv = new GridBagConstraints();
 		JLabel naziv = new JLabel("Naziv predmeta*");
@@ -77,14 +72,6 @@ public class DijalogIzmeniPredmet extends JDialog {
 		gbcNazivTekst.insets = new Insets(10, 10, 0, 10);
 		panel.add(nazivTekst, gbcNazivTekst);
 		nazivTekst.setText(predmet.getNazivPredmeta());	
-		/*nazivTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				predmet.setNazivPredmeta(nazivTekst.getText());
-				System.out.println(nazivTekst.getText());
-			}
-		});	*/
 		
 		GridBagConstraints gbcSemestar = new GridBagConstraints();
 		JLabel semestar = new JLabel("Semestar*");
@@ -134,14 +121,20 @@ public class DijalogIzmeniPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				predmet.setSifraPredmeta(sifraTekst.getText());
-				predmet.setNazivPredmeta(nazivTekst.getText());
-				predmet.setSemestar(semestarComboBox.getSelectedIndex() + 1);
-				predmet.setGodinaStudija(godinaComboBox.getSelectedIndex() + 1);
-				predmet.setPredmetniProfesor(null);
-				predmet.setSpisakStudenata(null);
-				PredmetiController.getInstance().izmeniPredmet(predmet);
-				dispose();	
+				if(sifraTekst.getText().isEmpty() || nazivTekst.getText().isEmpty()) 
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				else {
+					predmet.setSifraPredmeta(sifraTekst.getText());
+					predmet.setNazivPredmeta(nazivTekst.getText());
+					predmet.setSemestar(semestarComboBox.getSelectedIndex() + 1);
+					predmet.setGodinaStudija(godinaComboBox.getSelectedIndex() + 1);
+					predmet.setPredmetniProfesor(null);
+					predmet.setSpisakStudenata(null);
+					PredmetiController.getInstance().izmeniPredmet(predmet);
+					dispose();	
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Predmet nema profesora, dodajte ga ukoliko želite.",
+					"Upozorenje - dodaj profesora", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		

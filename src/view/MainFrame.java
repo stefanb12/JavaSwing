@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				int answer = JOptionPane
 						.showConfirmDialog(MainFrame.this,
-								"Da li ste sigurni da zelite da zatvorite aplikaciju?",
+								"Da li ste sigurni da želite da zatvorite aplikaciju?",
 								"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/exit.png"));
 				if(answer != JOptionPane.YES_OPTION) 

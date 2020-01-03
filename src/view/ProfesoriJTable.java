@@ -23,7 +23,6 @@ public class ProfesoriJTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setReorderingAllowed(false);
-		//setAutoCreateRowSorter(true);
 		this.setModel(new AbstractTableModelProfesori());
 		modelProfesora = (AbstractTableModel)this.getModel();
 		new ButtonColumnPPredmeti(this, 10);
@@ -36,6 +35,8 @@ public class ProfesoriJTable extends JTable {
 				} 
 			}	
 		});
+		
+		//setAutoCreateRowSorter(true); 
 	}
 	
 	@Override

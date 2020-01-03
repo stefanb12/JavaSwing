@@ -51,7 +51,7 @@ public class DijaloziController {
 			dialog.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 2) {
 			if(PredmetiJTable.rowSelectedIndex == -1) {
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji zelite da izmenite.");
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji želite da izmenite.");
 			} else {
 				DijalogIzmeniPredmet dijalog = new DijalogIzmeniPredmet(MainFrame.getInstance(), "Izmena predmeta", true);
 				dijalog.setVisible(true);
@@ -65,11 +65,11 @@ public class DijaloziController {
 			dialogStudent.setVisible(true);
 		} else if(view.TabbedPane.indexTaba == 1) {
 			if(ProfesoriJTable.rowSelectedIndex == -1) {
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite profesora kojeg zelite da obrisete.");
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite profesora kojeg želite da obrisete.");
 			} else {
 				int answer = JOptionPane
 						.showConfirmDialog(MainFrame.getInstance(),
-								"Da li ste sigurni da zelite da obrisete profesora?",
+								"Da li ste sigurni da želite da obrisete profesora?",
 								"Brisanje profesora", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
 				if(answer == JOptionPane.YES_OPTION) {
@@ -79,11 +79,11 @@ public class DijaloziController {
 			}
 		} else if(view.TabbedPane.indexTaba == 2) {
 			if(PredmetiJTable.rowSelectedIndex == -1) {
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji zelite da obrisete.");
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji želite da obrisete.");
 			} else {
 				int answer = JOptionPane
 						.showConfirmDialog(MainFrame.getInstance(),
-								"Da li ste sigurni da zelite da obrisete predmet?",
+								"Da li ste sigurni da želite da obrisete predmet?",
 								"Brisanje predmeta", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
 				if(answer == JOptionPane.YES_OPTION) {

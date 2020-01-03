@@ -37,7 +37,7 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				JOptionPane.showMessageDialog(null, "Poruka");
+				JOptionPane.showMessageDialog(null, "Prikazi studente");
 			}
 		});
 

@@ -27,17 +27,24 @@ public class BazaPredmeta {
 		this.kolone.add("Semestar");
 		this.kolone.add("Godina");
 		this.kolone.add("Profesor");
-		//this.kolone.add("Studenti"); // U ovoj kolini treba da bude Btn "Prikazi" 
 	}
 
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-		Profesor profesor = new Profesor("Pera", "Peric", Profesor.parseDate("1.1.2001"), 
-				"Novi sad 1", "064", "sdasd@gmail ","Beograd", "1231231", "Doktor", "Nastavnik", new ArrayList<Predmet>());
-		List<Student> studenti = new ArrayList<Student>();
-		predmeti.add(new Predmet("1wd1342", "OISIS", 7, 3, profesor, studenti));
-		predmeti.add(new Predmet("11hhh1sdf3", "MATA", 4, 2, profesor, studenti));
-		predmeti.add(new Predmet("1wdkk23", "NANS", 4, 2, profesor, studenti));
+		Profesor profesor1 = new Profesor("Milan", "Petrovic", Profesor.parseDate("2.1.1965"), 
+				"Josifa Runjanina 3", "064 321 7123", "milan@gmail ","", "1231231", "Profesor", "Doktor", null);
+		Profesor profesor2 = new Profesor("Jovan", "Milanovic", Profesor.parseDate("1.2.1970"), 
+				"Alekse Santica 53", "063 412 4381", "jovan@gmail ","Beograd", "1231231", "Profesor", "Doktor", null);
+		Profesor profesor3 = new Profesor("Predrag", "Stevanovic", Profesor.parseDate("12.3.1971"), 
+				"Safarikova 32", "062 576 5342", "predrag@gmail ","Beograd", "1231231", "Profesor", "Doktor", null);
+		Profesor profesor4 = new Profesor("Ivana", "Mitrovic", Profesor.parseDate("21.4.1969"), 
+				"Jevrejska 10", "064 247 953", "ivana@gmail ","Beograd", "1231231", "Profesor", "Doktor", null);
+		List<Student> studenti1 = new ArrayList<Student>();
+		List<Student> studenti2 = new ArrayList<Student>();
+		predmeti.add(new Predmet("RW123", "Metode optimizacije", 4, 2, profesor1, studenti1));
+		predmeti.add(new Predmet("32DF3", "Algebra", 1, 1, profesor2, studenti1));
+		predmeti.add(new Predmet("E24RE", "Programski prevodioci", 5, 3, profesor3, studenti2));
+		predmeti.add(new Predmet("M3282", "Elektrotehnika", 2, 1, profesor4, studenti2));
 
 	}
 

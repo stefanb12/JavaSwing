@@ -33,19 +33,20 @@ public class BazaProfesora {
 		this.kolone.add("Broj licne karte");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
-
 	}
 
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
 		
 		List<Predmet> predmeti = new ArrayList<Predmet>();
-		profesori.add(new Profesor("Pera", "Peric", Profesor.parseDate("1.1.2001"), 
-				"Novi sad 1", "064", "sdasd@gmail ","Beograd", "1231231", "Doktor", "Nastavnik", predmeti));
-		profesori.add(new Profesor("Pera", "Peric", Profesor.parseDate("1.1.2001"), 
-				"Novi sad 1", "064", "sdasd@gmail ","Beograd", "1231231", "Doktor", "Nastavnik", predmeti));
-		profesori.add(new Profesor("Pera", "Peric", Profesor.parseDate("1.1.2001"), 
-				"Novi sad 1", "064", "sdasd@gmail ","Beograd", "1231231", "Doktor", "Nastavnik", predmeti));
+		profesori.add(new Profesor("Milan", "Petrovic", Profesor.parseDate("2.1.1965"), 
+				"Josifa Runjanina 3", "064 321 7123", "milan@gmail ","Novi sad", "1523", "Profesor", "Doktor", predmeti));
+		profesori.add(new Profesor("Predrag", "Stevanovic", Profesor.parseDate("12.3.1971"), 
+				"Safarikova 32", "062 576 5342", "predrag@gmail ","Novi sad", "5123", "Profesor", "Doktor", predmeti));
+		profesori.add(new Profesor("Jovan", "Milanovic", Profesor.parseDate("1.2.1970"), 
+				"Alekse Santica 53", "063 412 4381", "jovan@gmail ","Beograd", "1231", "Profesor", "Doktor", predmeti));
+		profesori.add(new Profesor("Ivana", "Mitrovic", Profesor.parseDate("21.4.1969"), 
+				"Jevrejska 10", "064 247 953", "ivana@gmail ","Beograd", "4231", "Profesor", "Doktor", predmeti));
 
 	}
 

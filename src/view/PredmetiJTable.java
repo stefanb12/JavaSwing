@@ -9,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class PredmetiJTable extends JTable {
 	
@@ -23,7 +25,6 @@ public class PredmetiJTable extends JTable {
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setReorderingAllowed(false);
-		//setAutoCreateRowSorter(true);
 		this.setModel(new AbstractTableModelPredmeti());
 		modelPredmeta = (AbstractTableModel)this.getModel();
 		new ButtonColumnPStudenti(this, 5);
@@ -36,6 +37,14 @@ public class PredmetiJTable extends JTable {
 				} 
 			}	
 		});
+		
+		//setAutoCreateRowSorter(true);
+		TableRowSorter<TableModel> sortiraj = new TableRowSorter<TableModel>(this.getModel());
+		this.setRowSorter(sortiraj);
+		
+		sortiraj.setSortable(4, false);	// Ne sortiraj kolonu sa predmetnim profesorima
+		sortiraj.setSortable(5, false);	// Ne sortiraj kolonu sa listom studenata
+		sortiraj.sort();
 	}
 	
 	@Override

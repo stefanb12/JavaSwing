@@ -14,6 +14,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import contoller.PredmetiController;
+
 public class DijalogDodajProfesoraNaPredmet extends JDialog {
 
 	private static final long serialVersionUID = -3962693534685774550L;
@@ -29,20 +31,20 @@ public class DijalogDodajProfesoraNaPredmet extends JDialog {
 		this.add(panel, BorderLayout.CENTER);
 		
 		GridBagConstraints gbcLabela = new GridBagConstraints();
-		JLabel labela = new JLabel("Broj licne karte profesora*");
+		JLabel labela = new JLabel("Broj lične karte profesora*");
 		gbcLabela.gridx = 0;
 		gbcLabela.gridy = 0;
 		gbcLabela.insets = new Insets(0, 10, 0, 10);
 		panel.add(labela, gbcLabela);
 		
 		GridBagConstraints gbcTekst = new GridBagConstraints();
-		TextField imeTekst = new TextField();
+		final TextField licnaKartaTekst = new TextField();
 		gbcTekst.gridx = 1;
 		gbcTekst.gridy = 0;
 		gbcTekst.weightx = 100;
 		gbcTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcTekst.insets = new Insets(0, 0, 0, 10);
-		panel.add(imeTekst, gbcTekst);
+		panel.add(licnaKartaTekst, gbcTekst);
 		
 		this.add(panel);
 		
@@ -58,9 +60,13 @@ public class DijalogDodajProfesoraNaPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Dodavanje profesora na predmet...
-				dispose();
-				
+				// Dodavanje profesora na predmet
+				if(licnaKartaTekst.getText().isEmpty()) {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				} else {
+					dispose();
+					PredmetiController.getInstance().dodajProfesoraNaPredmet(licnaKartaTekst.getText());
+				}
 			}
 		});
 		
