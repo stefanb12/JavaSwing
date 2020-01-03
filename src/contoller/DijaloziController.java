@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import view.MainFrame;
 import view.PredmetiJTable;
 import view.ProfesoriJTable;
+import view.StudentiJTable;
 import view.dijalozi.DijalogDodajPredmet;
 import view.dijalozi.DijalogDodajProfesora;
 import view.dijalozi.DijalogDodajProfesoraNaPredmet;
@@ -44,11 +45,19 @@ public class DijaloziController {
 	
 	public void dijaloziIzmena() {
 		if(view.TabbedPane.indexTaba == 0){
-			DijalogIzmeniStudenta dialogStudent = new DijalogIzmeniStudenta(MainFrame.getInstance(), "Izmena studenta", true);
-			dialogStudent.setVisible(true);
+			if(StudentiJTable.rowSelectedIndex == -1){
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite studenta kojeg zelite da izmenite.");
+			}else {
+				DijalogIzmeniStudenta dialogStudent = new DijalogIzmeniStudenta(MainFrame.getInstance(), "Izmena studenta", true);
+				dialogStudent.setVisible(true);
+			}
 		}else if(view.TabbedPane.indexTaba == 1) {
-			DijalogIzmeniProfesora dialog = new DijalogIzmeniProfesora(MainFrame.getInstance(), "Izmena profesora", true);
-			dialog.setVisible(true);
+			if(ProfesoriJTable.rowSelectedIndex == -1){
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite profesora kojeg zelite da izmenite.");
+			}else{
+				DijalogIzmeniProfesora dialog = new DijalogIzmeniProfesora(MainFrame.getInstance(), "Izmena profesora", true);
+				dialog.setVisible(true);
+			}
 		} else if(view.TabbedPane.indexTaba == 2) {
 			if(PredmetiJTable.rowSelectedIndex == -1) {
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet koji želite da izmenite.");
@@ -61,8 +70,12 @@ public class DijaloziController {
 	
 	public void dijaloziBrisanje() {
 		if(view.TabbedPane.indexTaba == 0){
-			DijalogObrisiStudenta dialogStudent = new DijalogObrisiStudenta(MainFrame.getInstance(), "Brisanje studenta", true);
-			dialogStudent.setVisible(true);
+			if(StudentiJTable.rowSelectedIndex == -1){
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izabarite studenta kojeg zelite da obrisete.");
+			}else{
+				DijalogObrisiStudenta dialogStudent = new DijalogObrisiStudenta(MainFrame.getInstance(), "Brisanje studenta", true);
+				dialogStudent.setVisible(true);
+				}
 		} else if(view.TabbedPane.indexTaba == 1) {
 			if(ProfesoriJTable.rowSelectedIndex == -1) {
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite profesora kojeg želite da obrisete.");

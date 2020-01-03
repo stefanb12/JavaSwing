@@ -2,8 +2,10 @@ package view;
 
 import contoller.PredmetiController;
 import contoller.ProfesoriContoller;
+import contoller.StudentiController;
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 
 public class MainApp {
 
@@ -15,6 +17,9 @@ public class MainApp {
 		
 		BazaProfesora.getInstance();
 		ProfesoriContoller.getInstance();
+		
+		BazaStudenata.getInstance();
+		StudentiController.getInstance();
 	}
 
 }

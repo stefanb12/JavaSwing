@@ -14,6 +14,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.Profesor;
+
+import contoller.ProfesoriContoller;
+
 
 public class DijalogDodajProfesora extends JDialog {
 	
@@ -38,22 +42,13 @@ public class DijalogDodajProfesora extends JDialog {
 		
 		
 		GridBagConstraints gbcImeTekst = new GridBagConstraints();
-		TextField imeTekst = new TextField();
+		final TextField imeTekst = new TextField();
 		gbcImeTekst.gridx = 1;
 		gbcImeTekst.gridy = 0;
 		gbcImeTekst.weightx = 100;
 		gbcImeTekst.fill = GridBagConstraints.HORIZONTAL;
 		gbcImeTekst.insets = new Insets(20, 0, 0, 10);
 		panel.add(imeTekst, gbcImeTekst);
-		
-		imeTekst.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				System.out.println(e.getActionCommand());
-			}
-		});	
 		
 		GridBagConstraints gbcPrezime = new GridBagConstraints();
 		JLabel prezime = new JLabel("Prezime*  ");
@@ -63,7 +58,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(prezime,gbcPrezime);
 		
 		GridBagConstraints gbcPrezimeTekst = new GridBagConstraints();
-		TextField prezimeTekst = new TextField();
+		final TextField prezimeTekst = new TextField();
 		gbcPrezimeTekst.gridx = 1;
 		gbcPrezimeTekst.gridy = 1;
 		gbcPrezimeTekst.weightx = 100;
@@ -80,7 +75,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(datum, gbcDatum);
 		
 		GridBagConstraints gbcDatumTekst = new GridBagConstraints();
-		TextField datumTekst = new TextField();
+		final TextField datumTekst = new TextField();
 		gbcDatumTekst.gridx = 1;
 		gbcDatumTekst.gridy = 2;
 		gbcDatumTekst.weightx = 100;
@@ -97,7 +92,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(adresaS, gbcAdresaS);
 		
 		GridBagConstraints gbcAdresaSTekst = new GridBagConstraints();
-		TextField adresaSTekst = new TextField();
+		final TextField adresaSTekst = new TextField();
 		gbcAdresaSTekst.gridx = 1;
 		gbcAdresaSTekst.gridy = 3;
 		gbcAdresaSTekst.weightx = 100;
@@ -114,7 +109,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(telefon, gbcTelefon);	
 		
 		GridBagConstraints gbcTelefonTekst = new GridBagConstraints();
-		TextField telefonTekst = new TextField();
+		final TextField telefonTekst = new TextField();
 		gbcTelefonTekst.gridx = 1;
 		gbcTelefonTekst.gridy = 4;
 		gbcTelefonTekst.weightx = 100;
@@ -131,7 +126,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(email, gbcMailAdr);
 		
 		GridBagConstraints gbcMailAdrTekst = new GridBagConstraints();
-		TextField emailTekst = new TextField();
+		final TextField emailTekst = new TextField();
 		gbcMailAdrTekst.gridx = 1;
 		gbcMailAdrTekst.gridy = 5;
 		gbcMailAdrTekst.weightx = 100;
@@ -148,7 +143,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(adresaK, gbcAdresaK);
 			
 		GridBagConstraints gbcAdresaKTekst = new GridBagConstraints();
-		TextField adresaKTekst = new TextField();
+		final TextField adresaKTekst = new TextField();
 		gbcAdresaKTekst.gridx = 1;
 		gbcAdresaKTekst.gridy = 6;
 		gbcAdresaKTekst.weightx = 100;
@@ -165,7 +160,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(brojLK, gbcBrojLK);
 		
 		GridBagConstraints gbcBrojLKTekst = new GridBagConstraints();
-		TextField brojLKTekst = new TextField();
+		final TextField brojLKTekst = new TextField();
 		gbcBrojLKTekst.gridx = 1;
 		gbcBrojLKTekst.gridy = 7;
 		gbcBrojLKTekst.weightx = 100;
@@ -182,7 +177,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(titula, gbcTitula);
 		
 		GridBagConstraints gbcTitulaTekst = new GridBagConstraints();
-		TextField titulaTekst = new TextField();
+		final TextField titulaTekst = new TextField();
 		gbcTitulaTekst.gridx = 1;
 		gbcTitulaTekst.gridy = 8;
 		gbcTitulaTekst.weightx = 100;
@@ -199,7 +194,7 @@ public class DijalogDodajProfesora extends JDialog {
 		panel.add(zvanje, gbcZvanje);
 		
 		GridBagConstraints gbcZvanjeTekst = new GridBagConstraints();
-		TextField zvanjeTekst = new TextField();
+		final TextField zvanjeTekst = new TextField();
 		gbcZvanjeTekst.gridx = 1;
 		gbcZvanjeTekst.gridy = 9;
 		gbcZvanjeTekst.weightx = 100;
@@ -219,6 +214,10 @@ public class DijalogDodajProfesora extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ProfesoriContoller.getInstance().dodajProfesora(imeTekst.getText(), 
+						prezimeTekst.getText(), Profesor.parseDate(datumTekst.getText()), adresaSTekst.getText(), 
+						telefonTekst.getText(), emailTekst.getText(), adresaKTekst.getText(),
+						brojLKTekst.getText(), titulaTekst.getText(), zvanjeTekst.getText(), null);
 				dispose();
 				//JOptionPane.showMessageDialog(null, "Dodali ste profesora.");
 				
