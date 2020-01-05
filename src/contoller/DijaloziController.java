@@ -9,9 +9,7 @@ import view.ProfesoriJTable;
 import view.StudentiJTable;
 import view.dijalozi.DijalogDodajPredmet;
 import view.dijalozi.DijalogDodajProfesora;
-import view.dijalozi.DijalogDodajProfesoraNaPredmet;
 import view.dijalozi.DijalogDodajStudenta;
-import view.dijalozi.DijalogDodajStudentaNaPredmet;
 import view.dijalozi.DijalogIzmeniPredmet;
 import view.dijalozi.DijalogIzmeniProfesora;
 import view.dijalozi.DijalogIzmeniStudenta;
@@ -105,16 +103,6 @@ public class DijaloziController {
 				}
 			}
 		}
-	}
-	
-	public void dijalogDodavanjeProfesoraNaPredmet() {
-		DijalogDodajProfesoraNaPredmet dijalog = new DijalogDodajProfesoraNaPredmet(MainFrame.getInstance(), "Predmet - dodavanje profesora", true);
-		dijalog.setVisible(true);
-	} 
-	
-	public void dijalogDodavanjeStudentaNaPredmet() {
-		DijalogDodajStudentaNaPredmet dijalog = new DijalogDodajStudentaNaPredmet(MainFrame.getInstance(), "Predmet - dodavanje studenta", true);
-		dijalog.setVisible(true);
 	}
 
 }

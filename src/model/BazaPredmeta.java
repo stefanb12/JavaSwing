@@ -9,6 +9,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import view.MainFrame;
 import view.PredmetiJTable;
 
 public class BazaPredmeta {
@@ -121,6 +124,32 @@ public class BazaPredmeta {
 		}
 	}
 	
+	public void dodajProfesoraNaPredmet(String brojLicneKarte) {
+		Predmet predmet = getRow(PredmetiJTable.rowSelectedIndex);
+    	List<Profesor> profesori = BazaProfesora.getInstance().getProfesori();
+    	boolean postoji = false;
+    	for(Profesor profesor : profesori) {
+    		if(profesor.getBrojLicneKarte().equals(brojLicneKarte)) {
+    			predmet.setPredmetniProfesor(profesor);
+    			postoji = true;
+    			break;
+    		} 
+    	}
+    	if(!postoji) 
+    		JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoji profesor sa brojem licne karte koju ste uneli!",
+    				"Neuspešno dodavanje", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public List<Predmet> predmetiZaProfesora(String brojLicneKarte) {
+		List<Predmet> pronadjeniPredmeti = new ArrayList<Predmet>();
+    	for(Predmet predmet : this.predmeti) {
+    		if(predmet.getPredmetniProfesor() != null)
+    			if(predmet.getPredmetniProfesor().getBrojLicneKarte().equals(brojLicneKarte)) 
+    				pronadjeniPredmeti.add(predmet);
+    	}
+    	return pronadjeniPredmeti;
+	}
+
 	@SuppressWarnings("unchecked")
 	public void loadPredmete(String file) {
 		ObjectInputStream in = null;

@@ -14,7 +14,10 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import contoller.DijaloziController;
+import contoller.PredmetiController;
 import model.BazaPredmeta;
+import view.dijalozi.DijalogDodajProfesoraNaPredmet;
+import view.dijalozi.DijalogDodajStudentaNaPredmet;
 
 public class Toolbar extends JToolBar {
 
@@ -80,7 +83,8 @@ public class Toolbar extends JToolBar {
 				if(PredmetiJTable.rowSelectedIndex == -1) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite predmet na koji želite da dodate studenta");
 				} else {
-					DijaloziController.getInstance().dijalogDodavanjeStudentaNaPredmet();	
+					DijalogDodajStudentaNaPredmet dijalog = new DijalogDodajStudentaNaPredmet(MainFrame.getInstance(), "Predmet - dodavanje studenta", true);
+					dijalog.setVisible(true);	
 				}
 			}
 		});
@@ -96,7 +100,8 @@ public class Toolbar extends JToolBar {
 				if(PredmetiJTable.rowSelectedIndex == -1) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite predmet na koji želite da dodate profesora");
 				} else {
-					DijaloziController.getInstance().dijalogDodavanjeProfesoraNaPredmet();
+					DijalogDodajProfesoraNaPredmet dijalog = new DijalogDodajProfesoraNaPredmet(MainFrame.getInstance(), "Predmet - dodavanje profesora", true);
+					dijalog.setVisible(true);
 				}
 			}
 		});
@@ -123,9 +128,8 @@ public class Toolbar extends JToolBar {
 										"Predmet - brisanje profesora", JOptionPane.YES_NO_OPTION,
 										JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
 						if(answer == JOptionPane.YES_OPTION) {
-							// Brisanje profesora sa predmeta iz Baze Predmeta
-							BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex).setPredmetniProfesor(null);
-							PredmetiJTable.azurirajPrikaz();
+							// Brisanje profesora sa predmeta
+							PredmetiController.getInstance().obrisiProfesoraSaPredmeta();
 						}
 					}
 				}

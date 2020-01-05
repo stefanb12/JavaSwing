@@ -8,10 +8,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
+import view.dijalozi.DijalogPrikaziPredmeteZaProfesora;
 
 public class ButtonColumnPPredmeti extends AbstractCellEditor
 implements TableCellRenderer, TableCellEditor, MouseListener {
@@ -23,7 +24,7 @@ private static final long serialVersionUID = -6607502102629194402L;
 	private JTable table;
 	private boolean isEditorActive = false;
 
-	public ButtonColumnPPredmeti(JTable table, int column) {
+	public ButtonColumnPPredmeti(final JTable table, int column) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
@@ -37,7 +38,9 @@ private static final long serialVersionUID = -6607502102629194402L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				JOptionPane.showMessageDialog(null, "Prikazi predmete");
+				DijalogPrikaziPredmeteZaProfesora dijalog = new DijalogPrikaziPredmeteZaProfesora(MainFrame.getInstance(),
+						"Predmeti", true, table.getSelectedRow());
+				dijalog.setVisible(true);
 			}
 		});
 
@@ -48,12 +51,12 @@ private static final long serialVersionUID = -6607502102629194402L;
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 				
-		return new ButtonTablePanel(this.renderButton, 50, 50);
+		return new ButtonTablePanel(this.renderButton, 0, 0);
 	}
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		
-		return new ButtonTablePanel(this.editorButton, 50, 50);
+		return new ButtonTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
