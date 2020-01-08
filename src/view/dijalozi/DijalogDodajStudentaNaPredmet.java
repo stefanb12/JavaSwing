@@ -14,6 +14,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import contoller.PredmetiController;
+
 public class DijalogDodajStudentaNaPredmet extends JDialog {
 
 	private static final long serialVersionUID = -1248890123630811112L;
@@ -36,7 +38,7 @@ public class DijalogDodajStudentaNaPredmet extends JDialog {
 		panel.add(labela, gbcLabela);
 		
 		GridBagConstraints gbcTekst = new GridBagConstraints();
-		TextField imeTekst = new TextField();
+		final TextField imeTekst = new TextField();
 		gbcTekst.gridx = 1;
 		gbcTekst.gridy = 0;
 		gbcTekst.weightx = 100;
@@ -58,8 +60,12 @@ public class DijalogDodajStudentaNaPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				dispose();
-				
+				if(imeTekst.getText().isEmpty()){
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				}else{
+					dispose();
+					PredmetiController.getInstance().dodajStudentaNaPredmet(imeTekst.getText());
+				}
 			}
 		});
 		

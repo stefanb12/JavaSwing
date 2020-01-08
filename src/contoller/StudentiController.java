@@ -1,9 +1,11 @@
 package contoller;
 
 import java.util.Date;
+import java.util.List;
 
 import view.StudentiJTable;
 
+import model.Predmet;
 import model.Stanje;
 import model.Student;
 import model.BazaStudenata;
@@ -24,10 +26,10 @@ public class StudentiController {
 	public void dodajStudenta(String brojIndeksa, String ime, String prezime, Date datumRodjenja,
 			String adresaStanovanja, String kontaktTelefon, String emailAdresa,
 			Date datumUpisa, int trenutnaGodinaStudija,
-			double prosecnaOcena, Stanje stanje){
+			double prosecnaOcena, Stanje stanje, List<Predmet> predmeti){
 			BazaStudenata.getInstance().dodajStudenta(brojIndeksa, ime, prezime, datumRodjenja, 
 				adresaStanovanja, kontaktTelefon, emailAdresa, datumUpisa, 
-				trenutnaGodinaStudija, prosecnaOcena, stanje);
+				trenutnaGodinaStudija, prosecnaOcena, stanje, predmeti);
 			StudentiJTable.azurirajPrikaz();
 	}
 	

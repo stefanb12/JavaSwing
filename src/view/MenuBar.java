@@ -10,6 +10,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+
 import contoller.DijaloziController;
 
 public class MenuBar extends JMenuBar{
@@ -44,7 +48,10 @@ public class MenuBar extends JMenuBar{
 		zatvori.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
+				BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
+				BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
+				BazaStudenata.getInstance().saveStudente("serijalizacija/Studenti.raw");
 				MainFrame.getInstance().dispose();	          
 			}
 		});

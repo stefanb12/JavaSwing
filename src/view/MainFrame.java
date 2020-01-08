@@ -13,6 +13,7 @@ import javax.swing.WindowConstants;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 
 public class MainFrame extends JFrame {
 
@@ -51,6 +52,7 @@ public class MainFrame extends JFrame {
 			public void windowOpened(WindowEvent e) {
 				BazaProfesora.getInstance().loadProfesore("serijalizacija/Profesori.raw");
 				BazaPredmeta.getInstance().loadPredmete("serijalizacija/Predmeti.raw");
+				BazaStudenata.getInstance().loadStudente("serijalizacija/Studenti.raw");
 			}
 			
 			@Override
@@ -78,6 +80,7 @@ public class MainFrame extends JFrame {
 				if(answer == JOptionPane.YES_OPTION) {
 					BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
 					BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
+					BazaStudenata.getInstance().saveStudente("serijalizacija/Studenti.raw");
 					setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				} else { 
 					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);	

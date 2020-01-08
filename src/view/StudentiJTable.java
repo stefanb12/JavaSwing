@@ -9,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class StudentiJTable extends JTable{
 
@@ -26,6 +28,7 @@ public class StudentiJTable extends JTable{
 		//this.setModel(new AbstractTableModelStudenti());
 		this.setModel(new AbstractTableModelStudenti());
 		modelStudenta = (AbstractTableModel)this.getModel();
+		new ButtonColumnSPredmeti(this, 11);
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -35,6 +38,11 @@ public class StudentiJTable extends JTable{
 				} 
 			}	
 		});
+		
+		TableRowSorter<TableModel> sortiraj = new TableRowSorter<TableModel>(this.getModel());
+		this.setRowSorter(sortiraj);
+		
+		sortiraj.sort();
 	}
 	
 	@Override

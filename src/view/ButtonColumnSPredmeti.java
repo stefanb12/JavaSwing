@@ -12,19 +12,19 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import view.dijalozi.DijalogListaStudenataNaPredmetu;
+import view.dijalozi.DijalogPrikaziPredmeteZaStudenta;
 
-public class ButtonColumnPStudenti extends AbstractCellEditor
-implements TableCellRenderer, TableCellEditor, MouseListener {
+public class ButtonColumnSPredmeti extends AbstractCellEditor
+implements TableCellRenderer, TableCellEditor, MouseListener{
 
-	private static final long serialVersionUID = -6607502102629194402L;
+	private static final long serialVersionUID = -4360535212458790977L;
 	
 	private JButton renderButton;
 	private JButton editorButton;
 	private JTable table;
 	private boolean isEditorActive = false;
-
-	public ButtonColumnPStudenti(final JTable table, int column) {
+	
+	public ButtonColumnSPredmeti(final JTable table, int column) {
 		this.table = table;
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
@@ -37,10 +37,10 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fireEditingStopped();
-				DijalogListaStudenataNaPredmetu dijalog = new DijalogListaStudenataNaPredmetu(MainFrame.getInstance(),
-						"Spisak studenata", true, table.getSelectedRow());
+				DijalogPrikaziPredmeteZaStudenta dijalog = new DijalogPrikaziPredmeteZaStudenta(MainFrame.getInstance(),
+						"Predmeti", true, table.getSelectedRow());
 				dijalog.setVisible(true);
+				
 			}
 		});
 
@@ -87,5 +87,7 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
+	
+	
 
 }

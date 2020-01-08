@@ -1,8 +1,16 @@
 package model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import view.StudentiJTable;
 
 public class BazaStudenata {
 	
@@ -38,9 +46,10 @@ public class BazaStudenata {
 	
 	private void InitStudente(){
 		this.studenti = new ArrayList<Student>();
+		List<Predmet> predmeti = new ArrayList<Predmet>();
 		
 		studenti.add(new Student("RA001", "Marko", "Markovic", Student.parseDate("1.1.1998."), "Novi Sad 2", "063", "esd123@gmail.com", 
-				Student.parseDate("1.7.2017."), 3, 8.5, Stanje.B));
+				Student.parseDate("1.7.2017."), 3, 8.5, Stanje.B, predmeti));
 			
 	}
 	
@@ -99,8 +108,10 @@ public class BazaStudenata {
 	public void dodajStudenta(String brojIndeksa, String ime, String prezime, Date datumRodjenja,
 			String adresaStanovanja, String kontaktTelefon, String emailAdresa,
 			Date datumUpisa, int trenutnaGodinaStudija,
-			double prosecnaOcena, Stanje stanje){
-		this.studenti.add(new Student(brojIndeksa, ime, prezime, datumRodjenja, adresaStanovanja, kontaktTelefon, emailAdresa, datumUpisa, trenutnaGodinaStudija, prosecnaOcena, stanje));
+			double prosecnaOcena, Stanje stanje, List<Predmet> predmeti){
+		this.studenti.add(new Student(brojIndeksa, ime, prezime, datumRodjenja, 
+				adresaStanovanja, kontaktTelefon, emailAdresa, datumUpisa, 
+				trenutnaGodinaStudija, prosecnaOcena, stanje, predmeti));
 	}
 	
 	public void izbrisiStudenta(String brojIndeksa){
@@ -129,6 +140,48 @@ public class BazaStudenata {
 				student.setTrenutnaGodinaStudija(trenutnaGodinaStudija);
 				student.setProsecnaOcena(prosecnaOcena);
 				student.setStanje(stanje);
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void loadStudente(String file) {
+		ObjectInputStream in = null;
+		List<Student> studenti = new ArrayList<Student>();
+		
+		try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+			studenti = (List<Student>) in.readObject();
+			this.setStudenti(studenti);
+			StudentiJTable.azurirajPrikaz();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(in != null) {
+				try {
+					in.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void saveStudente(String file) {
+		ObjectOutputStream out = null;
+		
+		try {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+			out.writeObject(this.getStudenti());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(out != null) {
+				try {
+					out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

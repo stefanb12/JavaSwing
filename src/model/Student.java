@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 //enum Stanje { B, S };
 
@@ -22,23 +23,25 @@ public class Student implements Serializable {
 	private int trenutnaGodinaStudija;
 	private double prosecnaOcena;
 	private Stanje stanje;
+	private List<Predmet> spisakPredmeta;
 	
 	public Student(String brojIndeksa, String ime, String prezime, Date datumRodjenja,
 			String adresaStanovanja, String kontaktTelefon, String emailAdresa, 
-			Date datumUpisa, int trenutnaGodinaStudija,
-			double prosecnaOcena, Stanje stanje) {
+			Date datumUpisa, int trenutnaGodinaStudija, double prosecnaOcena, 
+			Stanje stanje, List<Predmet> spisakPredmeta) {
 		super();
+		this.brojIndeksa = brojIndeksa;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
 		this.adresaStanovanja = adresaStanovanja;
 		this.kontaktTelefon = kontaktTelefon;
 		this.emailAdresa = emailAdresa;
-		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.prosecnaOcena = prosecnaOcena;
 		this.stanje = stanje;
+		this.spisakPredmeta = spisakPredmeta;
 	}
 	
 	public String getIme() {
@@ -106,6 +109,12 @@ public class Student implements Serializable {
 	}
 	public void setStanje(Stanje stanje) {
 		this.stanje = stanje;
+	}	
+	public List<Predmet> getSpisakPredmeta() {
+		return spisakPredmeta;
+	}
+	public void setSpisakPredmeta(List<Predmet> spisakPredmeta) {
+		this.spisakPredmeta = spisakPredmeta;
 	}
 	
 	public static String parseDateToString(Date date) {
@@ -126,14 +135,14 @@ public class Student implements Serializable {
 			return null;
 		}	
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Student [ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
+		return "Student [brojIndeksa=" + brojIndeksa + ", ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
 				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", emailAdresa="
-				+ emailAdresa + ", brojIndeksa=" + brojIndeksa + ", datumUpisa=" + datumUpisa
+				+ emailAdresa + ", datumUpisa=" + datumUpisa
 				+ ", trenutnaGodinaStudija=" + trenutnaGodinaStudija + ", prosecnaOcena=" + prosecnaOcena + ", stanje="
-				+ stanje + "]";
+				+ stanje + ", spisakPredmeta=" + spisakPredmeta + "]";
 	}
 
 }

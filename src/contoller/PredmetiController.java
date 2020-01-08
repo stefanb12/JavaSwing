@@ -55,4 +55,11 @@ public class PredmetiController {
     	BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex).setPredmetniProfesor(null);
 		PredmetiJTable.azurirajPrikaz();
     }
+    
+    public void dodajStudentaNaPredmet(String brojIndeksa) {
+    	if (PredmetiJTable.rowSelectedIndex < 0)
+			return;
+    	BazaPredmeta.getInstance().dodajStudentaNaPredmet(brojIndeksa);
+    	//StudentiJTable.azurirajPrikaz();
+    }
 }

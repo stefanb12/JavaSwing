@@ -115,6 +115,7 @@ public class DijalogDodajPredmet extends JDialog {
 				if(sifraTekst.getText().isEmpty() || nazivTekst.getText().isEmpty()) 
 					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 				else {
+					
 					PredmetiController.getInstance().dodajPredmet(sifraTekst.getText(), nazivTekst.getText(),
 							semestarComboBox.getSelectedIndex() + 1, godinaComboBox.getSelectedIndex() + 1, null, null);
 					dispose();

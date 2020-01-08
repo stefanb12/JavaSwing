@@ -238,7 +238,8 @@ public class DijalogDodajStudenta extends JDialog{
 				StudentiController.getInstance().dodajStudenta(indeksTekst.getText(), imeTekst.getText(), 
 						prezimeTekst.getText(), Student.parseDate(datumTekst.getText()), adresaSTekst.getText(), 
 						telefonTekst.getText(), emailTekst.getText(), Student.parseDate(upisTekst.getText()), 
-						trenutnaGodStud.getSelectedIndex() + 1, Double.parseDouble(prosekTekst.getText()), Stanje.valueOf(grupaD.getSelection().getActionCommand()));
+						trenutnaGodStud.getSelectedIndex() + 1, Double.parseDouble(prosekTekst.getText()), 
+						Stanje.valueOf(grupaD.getSelection().getActionCommand()), null);
 				dispose();
 				//JOptionPane.showMessageDialog(null, "Dodali ste studenta.");
 				

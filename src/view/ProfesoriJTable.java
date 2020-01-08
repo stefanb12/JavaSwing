@@ -9,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class ProfesoriJTable extends JTable {
 
@@ -37,6 +39,13 @@ public class ProfesoriJTable extends JTable {
 		});
 		
 		//setAutoCreateRowSorter(true); 
+		TableRowSorter<TableModel> sortiraj = new TableRowSorter<TableModel>(this.getModel());
+		this.setRowSorter(sortiraj);
+		
+		sortiraj.setSortable(8, false);	
+		sortiraj.setSortable(9, false);	
+		sortiraj.setSortable(10, false);
+		sortiraj.sort();
 	}
 	
 	@Override

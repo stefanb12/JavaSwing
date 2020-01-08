@@ -149,6 +149,38 @@ public class BazaPredmeta {
     	}
     	return pronadjeniPredmeti;
 	}
+	
+	public List<Predmet> predmetiZaStudenta(String brojIndeksa) {
+		List<Predmet> odgovarajuciPredmeti = new ArrayList<Predmet>();
+    	for(Predmet predmet : this.predmeti) {
+    		if(predmet.getSpisakStudenata() == null){
+    			return odgovarajuciPredmeti;
+    		}else{
+    		for(Student student : predmet.getSpisakStudenata()){
+    			if(student.getBrojIndeksa().equals(brojIndeksa)){
+    				odgovarajuciPredmeti.add(predmet);
+    			}
+    		}
+    	}
+    	}
+    	return odgovarajuciPredmeti;
+	}
+
+	
+	public void dodajStudentaNaPredmet(String brojIndeksa){
+		   if (PredmetiJTable.rowSelectedIndex < 0)
+				return;
+	   	Predmet predmet = BazaPredmeta.getInstance().getRow(PredmetiJTable.rowSelectedIndex);
+	   	List<Student> studenti = BazaStudenata.getInstance().getStudenti();
+	   	List<Student> odgovarajuci = predmet.getSpisakStudenata();
+	   	for(Student student : studenti) {
+	   		if(student.getBrojIndeksa().equals(brojIndeksa) && student.getTrenutnaGodinaStudija() == predmet.getGodinaStudija()) {
+	   			odgovarajuci.add(student);
+	   			predmet.setSpisakStudenata(odgovarajuci);
+	   			break;
+	   		} 
+	   	}
+	}
 
 	@SuppressWarnings("unchecked")
 	public void loadPredmete(String file) {
