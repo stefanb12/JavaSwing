@@ -23,39 +23,43 @@ public class BazaProfesora {
 		return instance;
 	}
 
-	private List<Profesor> profesori;
+	private List<Profesor> profesori= new ArrayList<Profesor>();
 	private List<String> kolone;
 
 	private BazaProfesora() {
 	
-		initProfesore();
+		//initProfesore();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
-		this.kolone.add("Datum rodjenja");
+		this.kolone.add("Datum rođenja");
 		this.kolone.add("Adresa stavnovanja");
-		this.kolone.add("Telefon");
+		this.kolone.add("Kontakt telefon");
 		this.kolone.add("E-mail adresa");
 		this.kolone.add("Adresa kancelarije");
-		this.kolone.add("Broj licne karte");
+		this.kolone.add("Broj lične karte");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
 	}
 
-	private void initProfesore() {
+	/*private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
 		
 		List<Predmet> predmeti = new ArrayList<Predmet>();
-		profesori.add(new Profesor("Milan", "Petrovic", Profesor.parseDate("2.1.1965"), 
-				"Josifa Runjanina 3", "064 321 7123", "milan@gmail ","Novi sad", "1523", "Profesor", "Doktor", predmeti));
-		profesori.add(new Profesor("Predrag", "Stevanovic", Profesor.parseDate("12.3.1971"), 
-				"Safarikova 32", "062 576 5342", "predrag@gmail ","Novi sad", "5123", "Profesor", "Doktor", predmeti));
-		profesori.add(new Profesor("Jovan", "Milanovic", Profesor.parseDate("1.2.1970"), 
-				"Alekse Santica 53", "063 412 4381", "jovan@gmail ","Beograd", "1231", "Profesor", "Doktor", predmeti));
-		profesori.add(new Profesor("Ivana", "Mitrovic", Profesor.parseDate("21.4.1969"), 
-				"Jevrejska 10", "064 247 953", "ivana@gmail ","Beograd", "4231", "Profesor", "Doktor", predmeti));
-	}
+		profesori.add(new Profesor("Aleksa", "Petković", Profesor.parseDate("15.01.1965."), 
+				"Temerinska 15, Novi Sad", "021/334-990", "aleksa.petkovic@mailinator.com","Dositeja Obradovića 6, Novi Sad, MI 105", "007198721", "Prof. dr", "Redovni profesor", predmeti));
+		profesori.add(new Profesor("Jana", "Lazarević", Profesor.parseDate("25.02.1963."), 
+				"Jovana Cvijića 26, Novi Sad", "021/435-891", "jana.layarevic@mailinator.com","Dositeja Obradovića 6, Novi Sad, Nastavni blok 206", "008431903", "Prof. dr", "Redovni profesor", predmeti));
+		profesori.add(new Profesor("Nađa", "Aleksić", Profesor.parseDate("23.03.1973."), 
+				"Gundulićeva 75, Novi Sad", "021/730-172", "nadja.aleksic@mailinator.com","Dositeja Obradovića 6, Novi Sad, NTP 307", "005671007", "Dr", "Vanredni profesor", predmeti));
+		profesori.add(new Profesor("Đorđe", "Spasojević", Profesor.parseDate("24.08.1978."), 
+				"Šekspirova 44, Novi Sad", "021/514-893", "djordje.spasojevic@mailinator.com","Dositeja Obradovića 6, Novi Sad, MI 118", "009999331", "Dr", "Vanredni profesor", predmeti));
+		profesori.add(new Profesor("Elena", "Milenković", Profesor.parseDate("08.11.1985."), 
+				"Tolstojeva 52, Novi Sad", "021/834-901", "elena.milenkovic@mailinator.com","Dositeja Obradovića 6, Novi Sad, Nastavni blok 217", "003330976", "Dr", "Docent", predmeti));
+		profesori.add(new Profesor("Teodor", "Mladenović", Profesor.parseDate("14.12.1983."), 
+				"Jovana Subotića 33, Novi Sad", "021/441-007", "teodor.mladenovic@mailinator.com","Dositeja Obradovića 6, Novi Sad, NTP M35", "007441998", "Dr", "Docent", predmeti));
+	}*/
 
 	public List<Profesor> getProfesori() {
 		return profesori;

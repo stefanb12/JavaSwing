@@ -108,7 +108,7 @@ public class Profesor implements Serializable {
 	
 	public static String parseDateToString(Date date) {
 		try {
-			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.");
 			return dateFormat.format(date);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class Profesor implements Serializable {
 	
 	public static java.util.Date parseDate(String date) {
 		try {
-			return new SimpleDateFormat("dd.MM.yyyy").parse(date);
+			return new SimpleDateFormat("dd.MM.yyyy.").parse(date);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;

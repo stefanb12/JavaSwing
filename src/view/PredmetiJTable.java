@@ -82,7 +82,7 @@ public class PredmetiJTable extends JTable {
 
 		for(int i = 0; i < delovi.length; i++) {
 			deo = delovi[i].split(":");
-			if(deo[0].equalsIgnoreCase("sifra")) {
+			if(deo[0].equalsIgnoreCase("šifra")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 0);   
 			        listOfFilters.add(rf);
@@ -103,14 +103,14 @@ public class PredmetiJTable extends JTable {
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    } 	
-			} if(deo[0].equalsIgnoreCase("godina")) {
+			} if(deo[0].equalsIgnoreCase("godinaStudijaUKojojSeIzvodi")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 3);   
 			        listOfFilters.add(rf);
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    }
-			} if(deo[0].equalsIgnoreCase("profesor")) {
+			} if(deo[0].equalsIgnoreCase("predmetniProfesor")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 4);   
 			        listOfFilters.add(rf);

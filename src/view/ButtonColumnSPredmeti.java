@@ -51,12 +51,12 @@ implements TableCellRenderer, TableCellEditor, MouseListener{
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
 				
-		return new ButtonTablePanel(this.renderButton, 50, 50);
+		return new ButtonTablePanel(this.renderButton, 0, 0);
 	}
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		
-		return new ButtonTablePanel(this.editorButton, 50, 50);
+		return new ButtonTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override

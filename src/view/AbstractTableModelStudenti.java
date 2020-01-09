@@ -33,7 +33,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 		if(columnIndex < 11){
 			return BazaStudenata.getInstance().getValueAt(rowIndex, columnIndex);
 		}else{
-			JButton std = new JButton("Studenti");
+			JButton std = new JButton("Predmeti");
 			return std;
 		}
 	}
@@ -41,7 +41,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 	@Override 
 	public String getColumnName(int column) {
 		if(column == 11){
-			return "Studenti";
+			return "Predmeti";
 		}
 		return BazaStudenata.getInstance().getColumnName(column);
 	}

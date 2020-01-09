@@ -97,7 +97,7 @@ public class ProfesoriJTable extends JTable {
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    }
-			} if(deo[0].equalsIgnoreCase("datumRodjenja")) {
+			} if(deo[0].equalsIgnoreCase("datumRođenja")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 2);   
 			        listOfFilters.add(rf);
@@ -111,7 +111,7 @@ public class ProfesoriJTable extends JTable {
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    }
-			} if(deo[0].equalsIgnoreCase("telefon")) {
+			} if(deo[0].equalsIgnoreCase("kontaktTelefon")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 4);   
 			        listOfFilters.add(rf);
@@ -132,7 +132,7 @@ public class ProfesoriJTable extends JTable {
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    }
-			} if(deo[0].equalsIgnoreCase("brojLicneKarte")) {
+			} if(deo[0].equalsIgnoreCase("brojLičneKarte")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 7);   
 			        listOfFilters.add(rf);
