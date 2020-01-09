@@ -140,7 +140,7 @@ public class Toolbar extends JToolBar {
 		desniPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(desniPanel);
 		 
-		JTextField textField = new JTextField();
+		final JTextField textField = new JTextField();
         textField.setPreferredSize(new Dimension(300, 43));
         desniPanel.add(textField);
 		
@@ -148,6 +148,18 @@ public class Toolbar extends JToolBar {
 		pretrazi.setToolTipText("Pretrazi");
 		pretrazi.setIcon(new ImageIcon("slike/pretrazi.png"));
 		desniPanel.add(pretrazi);
+		pretrazi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(TabbedPane.indexTaba == 1) {
+					ProfesoriJTable.prikaziPronadjeneProfesore(textField.getText());
+				} else if(TabbedPane.indexTaba == 2) {
+					PredmetiJTable.prikaziPronadjenePredmete(textField.getText());
+				}					
+			}
+		});
+		
 	}
 	
 }
