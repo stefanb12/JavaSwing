@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import contoller.PredmetiController;
+import model.BazaPredmeta;
+import model.Predmet;
+import model.Student;
 import view.MainFrame;
 
 public class DijalogDodajPredmet extends JDialog {
@@ -34,7 +39,7 @@ public class DijalogDodajPredmet extends JDialog {
 		this.add(panel, BorderLayout.CENTER);
 		
 		GridBagConstraints gbcSifra = new GridBagConstraints();
-		JLabel sifra = new JLabel("�ifra predmeta*");
+		JLabel sifra = new JLabel("Šifra predmeta*");
 		gbcSifra.gridx = 0;
 		gbcSifra.gridy = 0;
 		gbcSifra.insets = new Insets(10, 10, 0, 10);
@@ -112,15 +117,27 @@ public class DijalogDodajPredmet extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(sifraTekst.getText().isEmpty() || nazivTekst.getText().isEmpty()) 
+				if(sifraTekst.getText().isEmpty() || nazivTekst.getText().isEmpty()) {
 					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-				else {
-					
-					PredmetiController.getInstance().dodajPredmet(sifraTekst.getText(), nazivTekst.getText(),
-							semestarComboBox.getSelectedIndex() + 1, godinaComboBox.getSelectedIndex() + 1, null, null);
-					dispose();
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Predmet nema profesora, dodajte ga ukoliko �elite.",
-					"Upozorenje - dodaj profesora", JOptionPane.WARNING_MESSAGE);
+				} else {
+					boolean postoji = false;
+					List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmeti();
+					for(Predmet predmet : predmeti) {
+						if(predmet.getSifraPredmeta().equals(sifraTekst.getText())) {
+							postoji = true;
+							dispose();
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Predmet sa šifrom koju ste uneli već postoji!",
+									"Neuspešno dodavanje", JOptionPane.ERROR_MESSAGE);
+							}
+					}
+				
+					if(!postoji) {
+						PredmetiController.getInstance().dodajPredmet(sifraTekst.getText(), nazivTekst.getText(),
+								semestarComboBox.getSelectedIndex() + 1, godinaComboBox.getSelectedIndex() + 1, null, new ArrayList<Student>());
+						dispose();
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Predmet nema profesora i studente, dodajte ih ukoliko želite.",
+								"Upozorenje - dodaj profesora i studente", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});

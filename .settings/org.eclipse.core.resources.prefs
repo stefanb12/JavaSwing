@@ -3,4 +3,6 @@ encoding//src/model/BazaPredmeta.java=UTF-8
 encoding//src/model/BazaProfesora.java=UTF-8
 encoding//src/model/BazaStudenata.java=UTF-8
 encoding//src/view/ProfesoriJTable.java=UTF-8
+encoding//src/view/dijalozi/DijalogDodajPredmet.java=UTF-8
 encoding//src/view/dijalozi/DijalogDodajProfesoraNaPredmet.java=UTF-8
+encoding//src/view/dijalozi/DijalogIzmeniPredmet.java=UTF-8

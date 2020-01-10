@@ -76,9 +76,6 @@ public class DijalogListaStudenataNaPredmetu extends JDialog{
 				}else{
 					predmet.getSpisakStudenata().remove(indeks);
 					listaIndeksa.remove(indeks);
-					for(Student student : predmet.getSpisakStudenata()){
-						System.out.println(student.getBrojIndeksa());
-					}
 				}
 			}
 		});

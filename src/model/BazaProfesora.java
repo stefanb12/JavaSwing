@@ -132,6 +132,24 @@ public class BazaProfesora {
 				profesor.setSpisakPredmeta(predmeti);
 			}
 		}
+		List<Predmet> predmetiList = BazaPredmeta.getInstance().getPredmeti();
+		for(Predmet predmet : predmetiList) {
+			if(predmet.getPredmetniProfesor() != null) {
+				if(predmet.getPredmetniProfesor().getBrojLicneKarte().equals(brojLicneKarte)) {
+					predmet.getPredmetniProfesor().setIme(ime);
+					predmet.getPredmetniProfesor().setPrezime(prezime);
+					predmet.getPredmetniProfesor().setDatumRodjenja(datumRodjenja);
+					predmet.getPredmetniProfesor().setAdresaStanovanja(adresaStanovanja);
+					predmet.getPredmetniProfesor().setKontaktTelefon(telefon);
+					predmet.getPredmetniProfesor().setEmailAdresa(email);
+					predmet.getPredmetniProfesor().setAdresaKancelarije(adresaKancelarije);
+					predmet.getPredmetniProfesor().setBrojLicneKarte(brojLicneKarte);
+					predmet.getPredmetniProfesor().setTitula(titula);
+					predmet.getPredmetniProfesor().setZvanje(zvanje);
+					predmet.getPredmetniProfesor().setSpisakPredmeta(predmeti);
+				}
+			}
+		}
 	}
 	
 	public void izbrisiProfesora(String brojLicneKarte) {
@@ -140,6 +158,12 @@ public class BazaProfesora {
 				profesori.remove(profesor);
 				break;
 			}
+		}
+		List<Predmet> predmeti = BazaPredmeta.getInstance().getPredmeti();
+		for(Predmet predmet : predmeti) {
+			if(predmet.getPredmetniProfesor() != null)
+				if(predmet.getPredmetniProfesor().getBrojLicneKarte().equals(brojLicneKarte))
+					predmet.setPredmetniProfesor(null);
 		}
 	}
 	
