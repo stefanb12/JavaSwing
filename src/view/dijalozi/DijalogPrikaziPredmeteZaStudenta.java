@@ -31,10 +31,7 @@ public class DijalogPrikaziPredmeteZaStudenta extends JDialog{
 		List<Predmet> odgovarajuciPredmeti =  BazaPredmeta.getInstance().predmetiZaStudenta(brojIndeksa);
 		
 		Object[] prikazi;
-		if(odgovarajuciPredmeti == null) {
-			prikazi = new Object[1];
-			prikazi[0] = "Nije ni na jednom predmetu"; 
-		} else if(odgovarajuciPredmeti.isEmpty()){
+		if(odgovarajuciPredmeti.isEmpty()){
 			prikazi = new Object[1];
 			prikazi[0] = "Nije ni na jednom predmetu"; 
 		}else{

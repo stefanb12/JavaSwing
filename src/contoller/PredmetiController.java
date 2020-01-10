@@ -60,6 +60,6 @@ public class PredmetiController {
     	if (PredmetiJTable.rowSelectedIndex < 0)
 			return;
     	BazaPredmeta.getInstance().dodajStudentaNaPredmet(brojIndeksa);
-    	//StudentiJTable.azurirajPrikaz();
+    	PredmetiJTable.azurirajPrikaz();
     }
 }
