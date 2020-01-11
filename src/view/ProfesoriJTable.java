@@ -6,7 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -74,11 +76,20 @@ public class ProfesoriJTable extends JTable {
 		
 		String[] delovi;
 		String[] deo;
-		if(tekstZaPretragu.contains(";")) {
-			delovi = tekstZaPretragu.split(";");
-		} else {
+		// Regularni izraz kada pretrazujemo po jednoj koloni tj. po jednom kriterijumu
+		if(Pattern.matches("[a-zA-Z\\p{IsLatin}||-]+:[a-zA-Z\\p{IsLatin}||0-9||.||,||/||@|| ]+", tekstZaPretragu) == true) {
 			delovi = new String[1];
 			delovi[0] = tekstZaPretragu;
+		// Regularni izraz kada pretrazujemo po vise kolona tj po vise kriterijuma
+		} else if(Pattern.matches("([a-zA-Z\\p{IsLatin}||-]+:[a-zA-Z\\p{IsLatin}||0-9||.||,||/||@|| ]+;?){1,5}", tekstZaPretragu) == true) {
+			delovi = tekstZaPretragu.split(";");
+		} else if(tekstZaPretragu.isEmpty()){	// Kada iz pretrage obrise tekst prikaze se cela tabela
+			delovi = new String[1];
+			delovi[0] = tekstZaPretragu;
+		} else {
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste dobro uneli tekst za pretragu!",
+					"Upozorenje", JOptionPane.WARNING_MESSAGE);
+			return;
 		}
 
 		for(int i = 0; i < delovi.length; i++) {

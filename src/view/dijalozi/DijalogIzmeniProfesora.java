@@ -74,7 +74,7 @@ public class DijalogIzmeniProfesora extends JDialog {
 		prezimeTekst.setText(profesor.getPrezime());
 		
 		GridBagConstraints gbcDatum = new GridBagConstraints();
-		JLabel datum = new JLabel("Datum rodjenja*  ");
+		JLabel datum = new JLabel("Datum rođenja*  ");
 		gbcDatum.gridx = 0;
 		gbcDatum.gridy = 2;
 		gbcDatum.insets = new Insets(20, 0, 0, 20);
@@ -125,7 +125,7 @@ public class DijalogIzmeniProfesora extends JDialog {
 		telefonTekst.setText(profesor.getKontaktTelefon());
 		
 		GridBagConstraints gbcMailAdr = new GridBagConstraints();
-		JLabel email = new JLabel("Email adresa*  ");
+		JLabel email = new JLabel("E-mail adresa*  ");
 		gbcMailAdr.gridx = 0;
 		gbcMailAdr.gridy = 5;
 		gbcMailAdr.insets = new Insets(20, -12, 0, 20);
@@ -159,7 +159,7 @@ public class DijalogIzmeniProfesora extends JDialog {
 		adresaKTekst.setText(profesor.getAdresaKancelarije());
 		
 		GridBagConstraints gbcBrojLK = new GridBagConstraints();
-		JLabel brojLK = new JLabel("Broj licne karte*  ");
+		JLabel brojLK = new JLabel("Broj lične karte*  ");
 		gbcBrojLK.gridx = 0;
 		gbcBrojLK.gridy = 7;
 		gbcBrojLK.insets = new Insets(20, 0, 0, 20);
