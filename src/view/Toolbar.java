@@ -152,7 +152,9 @@ public class Toolbar extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(TabbedPane.indexTaba == 1) {
+				if(TabbedPane.indexTaba == 0){
+					StudentiJTable.prikaziPronadjeneStudente(textField.getText());
+				}else if(TabbedPane.indexTaba == 1) {
 					ProfesoriJTable.prikaziPronadjeneProfesore(textField.getText());
 				} else if(TabbedPane.indexTaba == 2) {
 					PredmetiJTable.prikaziPronadjenePredmete(textField.getText());

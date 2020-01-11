@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import view.dijalozi.DijalogAbout;
+import view.dijalozi.DijalogHelp;
+
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
@@ -85,12 +88,28 @@ public class MenuBar extends JMenuBar{
 		miHelp.setIcon(new ImageIcon("slike/help.png"));
 		miHelp.setMnemonic(KeyEvent.VK_H);
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));		
-	
+		miHelp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				DijalogHelp dijalog = new DijalogHelp(MainFrame.getInstance(), "Help", true);
+				dijalog.setVisible(true);
+			}
+		});
+		
 		JMenuItem miAbout = new JMenuItem("About");
 		miAbout.setIcon(new ImageIcon("slike/about.png"));
 		miAbout.setMnemonic(KeyEvent.VK_A);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));		
-	
+		miAbout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				DijalogAbout dijalog = new DijalogAbout(MainFrame.getInstance(), "About", true);
+				dijalog.setVisible(true);
+			}
+		});
+		
 		file.add(novo);
 		file.addSeparator();
 		file.add(zatvori);
