@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Predmet implements Serializable {
@@ -11,8 +12,10 @@ public class Predmet implements Serializable {
 	private String nazivPredmeta;
 	private int semestar;
 	private int godinaStudija;
-	private Profesor predmetniProfesor;
-	private List<Student> spisakStudenata;
+	private Profesor predmetniProfesor = new Profesor();
+	private List<Student> spisakStudenata = new ArrayList<Student>();
+	
+	public Predmet() {}
 	
 	public Predmet(String sifraPredmeta, String nazivPredmeta, int semestar, int godinaStudija,
 			Profesor predmetniProfesor, List<Student> spisakStudenata) {

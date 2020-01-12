@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,9 @@ public class Student implements Serializable {
 	private int trenutnaGodinaStudija;
 	private double prosecnaOcena;
 	private Stanje stanje;
-	private List<Predmet> spisakPredmeta;
+	private List<Predmet> spisakPredmeta = new ArrayList<Predmet>();
+	
+	public Student() {}
 	
 	public Student(String brojIndeksa, String ime, String prezime, Date datumRodjenja,
 			String adresaStanovanja, String kontaktTelefon, String emailAdresa, 

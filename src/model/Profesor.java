@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class Profesor implements Serializable {
 	private String brojLicneKarte;
 	private String titula;
 	private String zvanje;
-	private List<Predmet> spisakPredmeta;
+	private List<Predmet> spisakPredmeta = new ArrayList<Predmet>();
+	
+	public Profesor() {}
 	
 	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String emailAdresa, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje,

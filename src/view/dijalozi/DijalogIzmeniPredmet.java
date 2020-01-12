@@ -81,8 +81,8 @@ public class DijalogIzmeniPredmet extends JDialog {
 		gbcSemestar.insets = new Insets(10, -20, 0, 10);
 		panel.add(semestar, gbcSemestar);
 		
-		String[] semestarTekst = {"I (prvi)", "II (drugi)", "III (treci)", "IV (cetvrti)", 
-				"V (peti)", "VI (sesti)", "VII (sedmi)", "VIII (osmi)"};
+		String[] semestarTekst = {"I (prvi)", "II (drugi)", "III (treći)", "IV (četvrti)", 
+				"V (peti)", "VI (šesti)", "VII (sedmi)", "VIII (osmi)"};
 		final JComboBox<String> semestarComboBox = new JComboBox<String>(semestarTekst);		
 		semestarComboBox.setSelectedIndex(predmet.getSemestar() - 1);
 		
@@ -100,7 +100,7 @@ public class DijalogIzmeniPredmet extends JDialog {
 		gbcGodina.insets = new Insets(10, -32, 0, 10);
 		panel.add(godina, gbcGodina);
 		
-		String[] godinaTekst = {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"};
+		String[] godinaTekst = {"I (prva)", "II (druga)", "III (treća)", "IV (četvrta)"};
 		final JComboBox<String> godinaComboBox = new JComboBox<String>(godinaTekst);
 		godinaComboBox.setSelectedIndex(predmet.getGodinaStudija() - 1);
 		

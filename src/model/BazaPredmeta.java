@@ -132,7 +132,7 @@ public class BazaPredmeta {
     		} 
     	}
     	if(!postoji) 
-    		JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoji profesor sa brojem licne karte koju ste uneli!",
+    		JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoji profesor sa brojem lične karte koju ste uneli!",
     				"Neuspešno dodavanje", JOptionPane.ERROR_MESSAGE);
 	}
 	
@@ -149,9 +149,10 @@ public class BazaPredmeta {
 	public List<Predmet> predmetiZaStudenta(String brojIndeksa) {
 		List<Predmet> odgovarajuciPredmeti = new ArrayList<Predmet>();
     	for(Predmet predmet : this.predmeti) {
-    		for(Student student : predmet.getSpisakStudenata()){
-    			if(student.getBrojIndeksa().equals(brojIndeksa)){
-    				odgovarajuciPredmeti.add(predmet);
+    		if(predmet.getSpisakStudenata() != null) {
+    			for(Student student : predmet.getSpisakStudenata()){
+    				if(student.getBrojIndeksa().equals(brojIndeksa))
+    					odgovarajuciPredmeti.add(predmet);
     			}
     		}
     	}

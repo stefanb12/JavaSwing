@@ -25,7 +25,7 @@ public class DijalogObrisiStudenta extends JDialog{
 		
 		JPanel panel = new JPanel();
 		
-		JLabel text = new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
+		JLabel text = new JLabel("Da li ste sigurni da želite da obrišete studenta?");
 		panel.add(text);
 		this.add(panel, BorderLayout.CENTER);
 		

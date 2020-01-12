@@ -30,14 +30,17 @@ public class DijalogPrikaziPredmeteZaProfesora extends JDialog {
 		String brojLicneKarte = BazaProfesora.getInstance().getRow(rowSelectedIndeks).getBrojLicneKarte();
 		List<Predmet> predmetiZaProfesora =  BazaPredmeta.getInstance().predmetiZaProfesora(brojLicneKarte);
 		
+		BazaProfesora.getInstance().getRow(rowSelectedIndeks).setSpisakPredmeta(predmetiZaProfesora);
+		List<Predmet> predmetiZaPrikaz = BazaProfesora.getInstance().getRow(rowSelectedIndeks).getSpisakPredmeta();
+		
 		Object[] prikazi;
-		if(predmetiZaProfesora.isEmpty()) {
+		if(predmetiZaPrikaz.isEmpty()) {
 			prikazi = new Object[1];
 			prikazi[0] = "Ne predaje ni na jednom predmetu"; 
 		} else {
-			prikazi = new Object[predmetiZaProfesora.size()];	
+			prikazi = new Object[predmetiZaPrikaz.size()];	
 			int i = 0;
-			for(Predmet predmet : predmetiZaProfesora) {
+			for(Predmet predmet : predmetiZaPrikaz) {
 				prikazi[i] = predmet.getNazivPredmeta();
 				i++;
 			}

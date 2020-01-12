@@ -63,7 +63,7 @@ public class DijalogListaStudenataNaPredmetu extends JDialog{
 		panel.add(listScroller);
 		
 		JPanel panelBottom = new JPanel();
-		JButton obrisi = new JButton("Obrisi");
+		JButton obrisi = new JButton("Obriši");
 		obrisi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -71,8 +71,8 @@ public class DijalogListaStudenataNaPredmetu extends JDialog{
 				int indeks = lista.getSelectedIndex();
 				if(indeks == -1){
 					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-			   				"Izaberite studenta kojeg zelite da uklonite sa predmeta", 
-			   				"Dodavanje nije uspelo", JOptionPane.ERROR_MESSAGE);
+			   				"Izaberite studenta kojeg želite da uklonite sa predmeta", 
+			   				"Brisanje nije uspelo", JOptionPane.ERROR_MESSAGE);
 				}else{
 					predmet.getSpisakStudenata().remove(indeks);
 					listaIndeksa.remove(indeks);

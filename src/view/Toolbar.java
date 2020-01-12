@@ -61,7 +61,7 @@ public class Toolbar extends JToolBar {
 		});
 		
 		JButton obrisi = new JButton();
-		obrisi.setToolTipText("Obrisi");
+		obrisi.setToolTipText("Obriši");
 		obrisi.setIcon(new ImageIcon("slike/obrisi.png"));
 		leviPanel.add(obrisi);
 		obrisi.addActionListener(new ActionListener() {
@@ -107,7 +107,7 @@ public class Toolbar extends JToolBar {
 		});
 		
 		obrisiProfesoraSaPredmeta = new JButton();
-		obrisiProfesoraSaPredmeta.setToolTipText("Obrisi profesora");
+		obrisiProfesoraSaPredmeta.setToolTipText("Obriši profesora");
 		obrisiProfesoraSaPredmeta.setIcon(new ImageIcon("slike/obrisiProfesora.png"));
 		leviPanel.add(obrisiProfesoraSaPredmeta);
 		obrisiProfesoraSaPredmeta.addActionListener(new ActionListener() {		
@@ -115,7 +115,7 @@ public class Toolbar extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(PredmetiJTable.rowSelectedIndex == -1) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet sa kog želite da obrisete profesora.");
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite predmet sa kog želite da obrišete profesora.");
 				} else {
 					if(BazaPredmeta.getInstance().getValueAt(PredmetiJTable.rowSelectedIndex, 4).equals("Nema profesora")) {
 						JOptionPane.showMessageDialog(MainFrame.getInstance(),
@@ -124,7 +124,7 @@ public class Toolbar extends JToolBar {
 					} else {
 						int answer = JOptionPane
 								.showConfirmDialog(MainFrame.getInstance(),
-										"Da li ste sigurni da želite da obrisete profesora?",
+										"Da li ste sigurni da želite da obrišete profesora?",
 										"Predmet - brisanje profesora", JOptionPane.YES_NO_OPTION,
 										JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
 						if(answer == JOptionPane.YES_OPTION) {
@@ -145,7 +145,7 @@ public class Toolbar extends JToolBar {
         desniPanel.add(textField);
 		
 		JButton pretrazi = new JButton();
-		pretrazi.setToolTipText("Pretrazi");
+		pretrazi.setToolTipText("Pretraži");
 		pretrazi.setIcon(new ImageIcon("slike/pretrazi.png"));
 		desniPanel.add(pretrazi);
 		pretrazi.addActionListener(new ActionListener() {
