@@ -108,7 +108,7 @@ public class DijalogIzmeniProfesora extends JDialog {
 		adresaSTekst.setText(profesor.getAdresaStanovanja());
 		
 		GridBagConstraints gbcTelefon = new GridBagConstraints();
-		JLabel telefon = new JLabel("Broj telefona*  ");
+		JLabel telefon = new JLabel("Kontakt telefon*  ");
 		gbcTelefon.gridx = 0;
 		gbcTelefon.gridy = 4;
 		gbcTelefon.insets = new Insets(20, -14, 0, 20);

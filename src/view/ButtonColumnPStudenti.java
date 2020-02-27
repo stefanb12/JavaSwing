@@ -30,8 +30,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
 
-		this.renderButton = new JButton("Prikazi");
-		this.editorButton = new JButton("Prikazi");
+		this.renderButton = new JButton("Prikaži");
+		this.editorButton = new JButton("Prikaži");
 
 		this.editorButton.addActionListener(new ActionListener() {
 			
@@ -39,7 +39,7 @@ implements TableCellRenderer, TableCellEditor, MouseListener {
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
 				DijalogListaStudenataNaPredmetu dijalog = new DijalogListaStudenataNaPredmetu(MainFrame.getInstance(),
-						"Spisak studenata", true, table.getSelectedRow());
+						"Studenti", true, table.getSelectedRow());
 				dijalog.setVisible(true);
 			}
 		});

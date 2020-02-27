@@ -17,7 +17,7 @@ public class StatusBar extends JPanel {
 	public StatusBar() {
 		setLayout(new BorderLayout());
 		
-		JLabel studentstaSluzba = new JLabel(" " + "Studentska sluzba", JLabel.LEFT);
+		JLabel studentstaSluzba = new JLabel(" " + "Studentska služba", JLabel.LEFT);
 		studentstaSluzba.setForeground(Color.black);
 		
 		statusBar.setLayout(new BorderLayout());

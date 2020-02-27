@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 
 import view.dijalozi.DijalogAbout;
 import view.dijalozi.DijalogHelp;
@@ -52,10 +54,23 @@ public class MenuBar extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
-				BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
-				BazaStudenata.getInstance().saveStudente("serijalizacija/Studenti.raw");
-				MainFrame.getInstance().dispose();	          
+				int answer = JOptionPane
+						.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da želite da zatvorite aplikaciju?",
+								"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/exit.png"));
+				if(answer == JOptionPane.YES_OPTION) {
+					BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
+					BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
+					BazaStudenata.getInstance().saveStudente("serijalizacija/Studenti.raw");
+					MainFrame.getInstance().dispose();	
+				} else { 
+					MainFrame.getInstance().setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);	
+				}
+				//BazaProfesora.getInstance().saveProfesore("serijalizacija/Profesori.raw");
+				//BazaPredmeta.getInstance().savePredmete("serijalizacija/Predmeti.raw");
+				//BazaStudenata.getInstance().saveStudente("serijalizacija/Studenti.raw");
+				//MainFrame.getInstance().dispose();	          
 			}
 		});
 		

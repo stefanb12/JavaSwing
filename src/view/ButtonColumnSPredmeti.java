@@ -30,8 +30,8 @@ implements TableCellRenderer, TableCellEditor, MouseListener{
 		this.table.getColumnModel().getColumn(column).setCellEditor(this);
 		this.table.addMouseListener(this);
 
-		this.renderButton = new JButton("Prikazi");
-		this.editorButton = new JButton("Prikazi");
+		this.renderButton = new JButton("Prikaži");
+		this.editorButton = new JButton("Prikaži");
 
 		this.editorButton.addActionListener(new ActionListener() {
 			

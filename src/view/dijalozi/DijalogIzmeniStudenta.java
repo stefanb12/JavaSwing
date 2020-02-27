@@ -77,7 +77,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		prezimeTekst.setText(student.getPrezime());
 		
 		GridBagConstraints gbcDatum = new GridBagConstraints();
-		JLabel datum = new JLabel("Datum rodjenja*  ");
+		JLabel datum = new JLabel("Datum rođenja*  ");
 		gbcDatum.gridx = 0;
 		gbcDatum.gridy = 2;
 		gbcDatum.insets = new Insets(20, 0, 0, 20);
@@ -112,7 +112,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		adresaSTekst.setText(student.getAdresaStanovanja());
 		
 		GridBagConstraints gbcTelefon = new GridBagConstraints();
-		JLabel telefon = new JLabel("Broj telefona*  ");
+		JLabel telefon = new JLabel("Kontakt telefon*  ");
 		gbcTelefon.gridx = 0;
 		gbcTelefon.gridy = 4;
 		gbcTelefon.insets = new Insets(20, 0, 0, 20);
@@ -146,7 +146,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		indeksTekst.setText(student.getBrojIndeksa());
 		
 		GridBagConstraints gbcEmailAdresa = new GridBagConstraints();
-		JLabel email = new JLabel("Email*  ");
+		JLabel email = new JLabel("E-mail adresa*  ");
 		gbcEmailAdresa.gridx = 0;
 		gbcEmailAdresa.gridy = 6;
 		gbcEmailAdresa.insets = new Insets(20, 0, 0, 20);
@@ -180,7 +180,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		upisTekst.setText(Student.parseDateToString(student.getDatumUpisa()));
 		
 		GridBagConstraints gbcProsek = new GridBagConstraints();
-		JLabel prosek = new JLabel("Prosecna ocena*  ");
+		JLabel prosek = new JLabel("Prosečna ocena*  ");
 		gbcProsek.gridx = 0;
 		gbcProsek.gridy = 8;
 		gbcProsek.insets = new Insets(20, 0, 0, 20);
@@ -204,7 +204,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		panel.add(godStud, gbcTrenutnaGodStud);
 		
 		GridBagConstraints gbcTrenutnaGodStuds = new GridBagConstraints();
-		String[] trenutnaGod = new String[] {"I (prva)", "II (druga)","III (treca)", "IV (cetvrta)"};
+		String[] trenutnaGod = new String[] {"I (prva)", "II (druga)","III (treća)", "IV (četvrta)"};
 		final JComboBox<String> trenutnaGodStud = new JComboBox<>(trenutnaGod);
 		gbcTrenutnaGodStuds.gridx = 1;
 		gbcTrenutnaGodStuds.gridy = 9;
@@ -215,7 +215,7 @@ public class DijalogIzmeniStudenta extends JDialog{
 		trenutnaGodStud.setSelectedIndex(student.getTrenutnaGodinaStudija() - 1);
 		
 		GridBagConstraints gbcStanjeB = new GridBagConstraints();
-		final JRadioButton stanjeB = new JRadioButton("Bud�et");
+		final JRadioButton stanjeB = new JRadioButton("Budžet");
 		gbcStanjeB.gridx = 0;
 		gbcStanjeB.gridy = 10;
 		gbcStanjeB.fill = GridBagConstraints.HORIZONTAL;

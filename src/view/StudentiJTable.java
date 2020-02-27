@@ -123,7 +123,7 @@ public class StudentiJTable extends JTable{
 			    } catch (java.util.regex.PatternSyntaxException e) {
 			        return;
 			    }
-			} if(deo[0].equalsIgnoreCase("emailAdresa")) {
+			} if(deo[0].equalsIgnoreCase("E-mailAdresa")) {
 				try {
 			        rf = RowFilter.regexFilter(deo[1], 6);   
 			        listOfFilters.add(rf);

@@ -13,7 +13,6 @@ import view.dijalozi.DijalogDodajStudenta;
 import view.dijalozi.DijalogIzmeniPredmet;
 import view.dijalozi.DijalogIzmeniProfesora;
 import view.dijalozi.DijalogIzmeniStudenta;
-import view.dijalozi.DijalogObrisiStudenta;
 
 public class DijaloziController {
 
@@ -68,12 +67,19 @@ public class DijaloziController {
 	
 	public void dijaloziBrisanje() {
 		if(view.TabbedPane.indexTaba == 0){
-			if(StudentiJTable.rowSelectedIndex == -1){
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izabarite studenta kojeg želite da obrisete.");
-			}else{
-				DijalogObrisiStudenta dialogStudent = new DijalogObrisiStudenta(MainFrame.getInstance(), "Brisanje studenta", true);
-				dialogStudent.setVisible(true);
+			if(StudentiJTable.rowSelectedIndex == -1) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite studenta kojeg želite da obrišete.");
+			} else {
+				int answer = JOptionPane
+						.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da želite da obrišete studenta?",
+								"Brisanje studenta", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE, new ImageIcon("slike/obrisi.png"));
+				if(answer == JOptionPane.YES_OPTION) {
+					// Brisanje studenta
+					StudentiController.getInstance().izbrisiStudenta();
 				}
+			}
 		} else if(view.TabbedPane.indexTaba == 1) {
 			if(ProfesoriJTable.rowSelectedIndex == -1) {
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izbarite profesora kojeg želite da obrisete.");

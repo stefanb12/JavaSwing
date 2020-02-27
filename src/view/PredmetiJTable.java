@@ -48,7 +48,7 @@ public class PredmetiJTable extends JTable {
 		sortiraj = new TableRowSorter<TableModel>(this.getModel());
 		this.setRowSorter(sortiraj);
 		
-		sortiraj.setSortable(4, false);	// Ne sortiraj kolonu sa predmetnim profesorima
+		//sortiraj.setSortable(4, false);	// Ne sortiraj kolonu sa predmetnim profesorima
 		sortiraj.setSortable(5, false);	// Ne sortiraj kolonu sa listom studenata
 		sortiraj.sort();
 	}

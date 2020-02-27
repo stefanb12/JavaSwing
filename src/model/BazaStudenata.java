@@ -33,13 +33,13 @@ public class BazaStudenata {
 		this.kolone.add("Broj indeksa");
 		this.kolone.add("Ime");
 		this.kolone.add("Prezime");
-		this.kolone.add("Datum rodjenja");
+		this.kolone.add("Datum rođenja");
 		this.kolone.add("Adresa stanovanja");
-		this.kolone.add("Telefon");
-		this.kolone.add("Mejl adresa");
+		this.kolone.add("Kontakt telefon");
+		this.kolone.add("E-mail adresa");
 		this.kolone.add("Datum upisa");
 		this.kolone.add("Godina studija");
-		this.kolone.add("Prosecna ocena");
+		this.kolone.add("Prosečna ocena");
 		this.kolone.add("Status");
 
 	}

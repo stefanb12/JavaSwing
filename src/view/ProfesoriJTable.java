@@ -48,8 +48,8 @@ public class ProfesoriJTable extends JTable {
 		sortiraj = new TableRowSorter<TableModel>(this.getModel());
 		this.setRowSorter(sortiraj);
 		
-		sortiraj.setSortable(8, false);	
-		sortiraj.setSortable(9, false);	
+		//sortiraj.setSortable(8, false);	
+		//sortiraj.setSortable(9, false);	
 		sortiraj.setSortable(10, false);
 		sortiraj.sort();
 	}
